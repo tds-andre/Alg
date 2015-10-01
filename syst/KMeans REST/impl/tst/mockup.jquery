@@ -1,0 +1,5 @@
+file= {name: "Arquivo 1"}
+cluster = {name: "cluster 1", file: "http://localhost:8090/file/1"}
+$.ajax({url: "http://localhost:8090/file", type: "POST", contentType: "application/json", data: JSON.stringify(file), success: function(){
+	$.ajax({url: "http://localhost:8090/clusterization", type: "POST", contentType: "application/json", data: JSON.stringify(cluster)})
+})

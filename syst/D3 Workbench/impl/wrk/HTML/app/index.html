@@ -24,46 +24,45 @@
 	<script src="./vendor/d3/d3.js"></script>
 	<script src="./vendor/jQuery/jquery-1.11.3.min.js"></script>
 	<script src="./vendor/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="bubble-cluster.d3.js"></script>
 
 <style>
 
 
 </style>
 <svg  width="900" height="400" class="chart"></svg>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+
 <script>
 
+function key(datum,i){
+    return datum.Nome;
+}
+
+var data = [{"Nome":"Rick","Setor":"BI","Experiência":2,"Salário":7,"Seviragem":7,"Proatividade":7},{"Nome":"André","Setor":"BI","Experiência":5,"Salário":4,"Seviragem":10,"Proatividade":8},{"Nome":"Fraga","Setor":"BI","Experiência":1,"Salário":1,"Seviragem":8,"Proatividade":7},{"Nome":"Luciana","Setor":"BI","Experiência":0.2,"Salário":1,"Seviragem":2,"Proatividade":6},{"Nome":"Gabriel","Setor":"Des","Experiência":0.6,"Salário":1,"Seviragem":9,"Proatividade":3},{"Nome":"Leite","Setor":"Des","Experiência":0.6,"Salário":1,"Seviragem":5,"Proatividade":5},{"Nome":"Arruda","Setor":"Des","Experiência":10,"Salário":10,"Seviragem":9,"Proatividade":3},{"Nome":"Fernanda","Setor":"Des","Experiência":1.5,"Salário":1,"Seviragem":5,"Proatividade":5},{"Nome":"Lutz","Setor":"Gen","Experiência":10,"Salário":10,"Seviragem":4,"Proatividade":10},{"Nome":"João","Setor":"Gen","Experiência":6,"Salário":10,"Seviragem":5,"Proatividade":10},{"Nome":"Vicente","Setor":"Consultoria","Experiência":1.5,"Salário":3,"Seviragem":7,"Proatividade":8},{"Nome":"Vinícius","Setor":"Consultoria","Experiência":4,"Salário":5,"Seviragem":7,"Proatividade":8},{"Nome":"Kiapini","Setor":"Consultoria","Experiência":10,"Salário":10,"Seviragem":7,"Proatividade":8},{"Nome":"Augusto","Setor":"Consultoria","Experiência":3,"Salário":2,"Seviragem":5,"Proatividade":6},{"Nome":"Marcos","Setor":"Consultoria","Experiência":1,"Salário":1,"Seviragem":6,"Proatividade":6},{"Nome":"Simões","Setor":"Gen","Experiência":6,"Salário":10,"Seviragem":6,"Proatividade":7},{"Nome":"Rafael","Setor":"Consultoria","Experiência":6,"Salário":3,"Seviragem":6,"Proatividade":6}]
 
 
-var data = [{"name":"Arruda","m1":1,"m2":2,"m3":12,"cluster":"Des"},{"name":"Gabriel","m1":1,"m2":3,"m3":0.5,"cluster":"Des"},{"name":"Leite","m1":2,"m2":1,"m3":0.5,"cluster":"Des"},{"name":"Fernana","m1":1,"m2":5,"m3":1.5,"cluster":"Des"},{"name":"André","m1":7,"m2":7,"m3":5,"cluster":"BI"},{"name":"Rick","m1":8,"m2":2,"m3":2,"cluster":"BI"},{"name":"Fraga","m1":6,"m2":9,"m3":1,"cluster":"BI"}]
+var bc = new BubbleCluster({el:'body', key: key, dimensions: ["Experiência","Proatividade", "Salário","Setor"] });
+bc.update(data);
 
-var radius = d3.scale.linear()
-    .domain([d3.min(data, function(el){return el.m3}), d3.max(data, function(el){return el.m3})])
-    .range([6, 20]);
-var cart = {};
-cart.x = d3.scale.linear()
-    .domain([d3.min(data, function(el){return el.m1}), d3.max(data, function(el){return el.m1})])
-    .range([100, 800]);
-cart.y = d3.scale.linear()
-    .domain([d3.min(data, function(el){return el.m2}), d3.max(data, function(el){return el.m2})])
-    .range([350, 50]);
+function randomizeData(){
+    var
+        changes = Math.floor(Math.random() * data.length);
+        for(var i = 0; i < changes; i++){
 
-var chart = d3.select(".chart");
-var circle = chart
-    .selectAll("circle")
-        .data(data)
-    .enter()
-        .append("circle")
-            .attr("cx", function(el){return cart.x(el.m1)})
-            .attr("cy", function(el){return cart.y(el.m2)})
+            var  row = Math.floor(Math.random() * data.length);
+            data[row][bc.keys[0]] = Math.floor(Math.random() * 10);
+            data[row][bc.keys[1]] = Math.floor(Math.random() * 10);
+            data[row][bc.keys[2]] = Math.floor(Math.random() * 10);
             
-            .attr("fill", function(el){return el.cluster=="BI"? "steelblue":"green"})
-            .attr("r", 0)
-                .transition()
-                .duration(1000)
-            .attr("r", function(el){return radius(el.m3)})
-            .append("svg:title")
-                .text(function(d) { return d.name + " ("+d.m1+","+d.m2+")"; });
+        }
+        bc.update(data)
+
+
+}
+
+
+var randomizer = setInterval(randomizeData, 2000);
+
 </script>
 
 

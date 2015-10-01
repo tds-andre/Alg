@@ -1,3 +1,6 @@
+\.metadata
+\.settings
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
@@ -41,3 +44,4 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+/syst/KMeans REST/impl/wrk/STS/RemoteSystemsTempFiles
