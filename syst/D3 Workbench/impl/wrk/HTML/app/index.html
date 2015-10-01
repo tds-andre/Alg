@@ -50,9 +50,9 @@ function randomizeData(){
         for(var i = 0; i < changes; i++){
 
             var  row = Math.floor(Math.random() * data.length);
-            data[row][bc.keys[0]] = Math.floor(Math.random() * 10);
-            data[row][bc.keys[1]] = Math.floor(Math.random() * 10);
-            data[row][bc.keys[2]] = Math.floor(Math.random() * 10);
+            data[row][bc.keys[0]] = Math.floor(Math.random() * 100);
+            data[row][bc.keys[1]] = Math.floor(Math.random() * 100);
+            data[row][bc.keys[2]] = Math.floor(Math.random() * 100);
             
         }
         bc.update(data)
