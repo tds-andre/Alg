@@ -7,7 +7,7 @@ function BubbleCluster(args){
 			el: 'body',
 			
 			cluster: function(datum,i){return datum[datum.length-1]},
-			duration: 1000
+			duration: 500
 		}	
 
 	
@@ -38,7 +38,7 @@ function BubbleCluster(args){
         //update
         circle
             .transition()
-                .duration(1000)
+                .duration(this.options.duration)
                 .attr("cx", function(el){return self.scale.x(el[self.keys[0]])})
                 .attr("cy", function(el){return self.scale.y(el[self.keys[1]])})
                 .attr("r", function(el){return self.scale.radius(el[self.keys[2]])});
@@ -58,7 +58,7 @@ function BubbleCluster(args){
                 .attr("r", 0);
         entered
             .transition()
-                .duration(1000)
+                .duration(this.options.duration)
                 .attr("r", function(el){return self.scale.radius(el[self.keys[2]])});
         entered
             .append("svg:title")
@@ -68,7 +68,7 @@ function BubbleCluster(args){
        	var exited = circle.exit();
        	exited
        		.transition()
-       			.duration(1000)
+       			.duration(this.options.duration)
        			.attr("r",0);
        	exited.
        		remove();

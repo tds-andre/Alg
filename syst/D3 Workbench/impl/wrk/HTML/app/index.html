@@ -47,6 +47,8 @@ bc.update(data);
 function randomizeData(){
     var
         changes = Math.floor(Math.random() * data.length);
+		if(changes < data.length / 2)
+			change = Math.floor(data.length/2)
         for(var i = 0; i < changes; i++){
 
             var  row = Math.floor(Math.random() * data.length);
@@ -61,7 +63,7 @@ function randomizeData(){
 }
 
 
-var randomizer = setInterval(randomizeData, 2000);
+var randomizer = setInterval(randomizeData, 1000);
 
 </script>
 
