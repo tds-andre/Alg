@@ -49,7 +49,12 @@ function BubbleCluster(args){
                 .attr("cx", function(el){return self.scale.x(el[self.keys[0]])})
                 .attr("cy", function(el){return self.scale.y(el[self.keys[1]])})                
                 .attr("fill", function(el){return self.scale.color(el[self.keys[3]])})
-                .attr("opacity", 0.4)
+                .attr("fill-opacity", 0.5)
+                .attr("stroke-width", 1)                
+                .attr("stroke",  "black")
+                .attr("stroke-opacity", 0.6)
+                
+
                 .attr("r", 0);
         entered
             .transition()
@@ -77,7 +82,7 @@ function BubbleCluster(args){
 
 		self.scale.radius = d3.scale.linear()
 		    .domain([d3.min(self.data, function(el){return el[self.keys[2]]}), d3.max(data, function(el){return el[self.keys[2]]})])
-		    .range([10, 30]);
+		    .range([10, 40]);
 		self.scale.x = d3.scale.linear()
 		    .domain([d3.min(data, function(el){return el[self.keys[0]]}), d3.max(data, function(el){return el[self.keys[0]]})])
 		    .range([50, self.options.width - 50]);
