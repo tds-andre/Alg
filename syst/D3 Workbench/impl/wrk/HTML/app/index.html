@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>D3 Workbench</title>
+
+    <meta name="description" content="Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   
+	<link href="./vendor/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+		
+
+
+	
+    <!--Page Related Scripts-->
+	<script src="./vendor/d3/d3.js"></script>
+	<script src="./vendor/jQuery/jquery-1.11.3.min.js"></script>
+	<script src="./vendor/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+
+<style>
+
+
+</style>
+<svg  width="900" height="400" class="chart"></svg>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+
+
+var data = [{"name":"Arruda","m1":1,"m2":2,"m3":12,"cluster":"Des"},{"name":"Gabriel","m1":1,"m2":3,"m3":0.5,"cluster":"Des"},{"name":"Leite","m1":2,"m2":1,"m3":0.5,"cluster":"Des"},{"name":"Fernana","m1":1,"m2":5,"m3":1.5,"cluster":"Des"},{"name":"André","m1":7,"m2":7,"m3":5,"cluster":"BI"},{"name":"Rick","m1":8,"m2":2,"m3":2,"cluster":"BI"},{"name":"Fraga","m1":6,"m2":9,"m3":1,"cluster":"BI"}]
+
+var radius = d3.scale.linear()
+    .domain([d3.min(data, function(el){return el.m3}), d3.max(data, function(el){return el.m3})])
+    .range([6, 20]);
+var cart = {};
+cart.x = d3.scale.linear()
+    .domain([d3.min(data, function(el){return el.m1}), d3.max(data, function(el){return el.m1})])
+    .range([100, 800]);
+cart.y = d3.scale.linear()
+    .domain([d3.min(data, function(el){return el.m2}), d3.max(data, function(el){return el.m2})])
+    .range([350, 50]);
+
+var chart = d3.select(".chart");
+var circle = chart
+    .selectAll("circle")
+        .data(data)
+    .enter()
+        .append("circle")
+            .attr("cx", function(el){return cart.x(el.m1)})
+            .attr("cy", function(el){return cart.y(el.m2)})
+            
+            .attr("fill", function(el){return el.cluster=="BI"? "steelblue":"green"})
+            .attr("r", 0)
+                .transition()
+                .duration(1000)
+            .attr("r", function(el){return radius(el.m3)})
+            .append("svg:title")
+                .text(function(d) { return d.name + " ("+d.m1+","+d.m2+")"; });
+</script>
+
+
+
+	
+</body>
+<!--  /Body -->
+</html>
