@@ -44,8 +44,26 @@ var data = [{"Nome":"Rick","Setor":"BI","Experiência":2,"Salário":7,"Seviragem
 var bc = new BubbleCluster({el:'body', key: key, dimensions: ["Experiência","Proatividade", "Salário","Setor"] });
 bc.update(data);
 
+function randomizeData(){
+    var
+        changes = Math.floor(Math.random() * data.length);
+		if(changes < data.length / 2)
+			change = Math.floor(data.length/2)
+        for(var i = 0; i < changes; i++){
+
+            var  row = Math.floor(Math.random() * data.length);
+            data[row][bc.keys[0]] = Math.floor(Math.random() * 100);
+            data[row][bc.keys[1]] = Math.floor(Math.random() * 100);
+            data[row][bc.keys[2]] = Math.floor(Math.random() * 100);
+            
+        }
+        bc.update(data)
 
 
+}
+
+
+var randomizer = setInterval(randomizeData, 1000);
 
 </script>
 

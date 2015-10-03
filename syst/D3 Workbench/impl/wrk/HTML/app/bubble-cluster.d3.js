@@ -53,9 +53,18 @@ function BubbleCluster(args){
                 .attr("stroke-width", 1)                
                 .attr("stroke",  "black")
                 .attr("stroke-opacity", 0.6)
-                
+                .attr("r", 0)
+                .attr("cursor", "pointer")
+                .on("mouseover", function(el){
+                    d3.select(this)
+                        .style('fill-opacity', 1)
+                })
+                .on("mouseout", function(el){
+                    d3.select(this)
+                        .style('fill-opacity', 0.5)
+                });
 
-                .attr("r", 0);
+                
         entered
             .transition()
                 .duration(this.options.duration)
