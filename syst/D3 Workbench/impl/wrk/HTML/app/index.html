@@ -24,29 +24,89 @@
 	<script src="./vendor/d3/d3.js"></script>
 	<script src="./vendor/jQuery/jquery-1.11.3.min.js"></script>
 	<script src="./vendor/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-    <script src="bubble-cluster.d3.js"></script>
-
+  <script src="bubble-cluster.d3.js"></script>
+  <script src="flare.js"></script>
+  <script src="cities.js"></script>
 <style>
 
 
 </style>
-
+<table>
+  <tbody class="js-income">
+    
+  </tbody>
+</table>
 
 <script>
+ /* var data = cities[0].IncomeOportunities;
 
-function key(datum,i){
-    return datum.Nome;
+  var trs = d3.select(".js-income").selectAll("tr").data(function(d,i){
+    var arr = [];
+    
+    var count = 0;
+    for(var key in data[i]){
+      arr.push(data[i][key])
+      if(count++ ==2){
+        arr.push(arr[1]*arr[2]/100)
+        break;
+      }
+    }
+    
+    return arr;
+    
+  })
+ .enter().append("tr");
+
+
+ var tds = trs.selectAll("td")
+    .data(function(d) { return d; })
+  .enter().append("td")
+    .text(function(d) { return d; });*/
+    city = cities[0];
+  var incomes = [];
+  for(var i = 0; i < city.IncomeOportunities.length ; i++){
+    var income = []
+    var count =0 ;
+    for(var key in city.IncomeOportunities[i]){
+      income.push(city.IncomeOportunities[i][key])
+      count++;
+      if(count == 3){
+        income.push(income[1]*income[2]/100);
+        break;
+      }
+    }
+    incomes.push(income)
+  }
+
+
+
+function render(data){
+
+var tr = d3.select(".js-income").selectAll("tr")
+    .data(data);
+
+  tr.enter().append("tr");
+
+var td = tr.selectAll("td")
+    .data(function(d) { console.log(d); return d; });
+  td.transition()
+    .duration(500)
+        .tween("text", function(d,i) {
+          var it = d3.interpolateString(this.textContent, d);
+          return i ?
+            (i==2?
+              function(t){this.textContent = it(t) + "%"}
+              :
+              function(t){this.textContent = Number(it(t)).toFixed(2)}
+            )
+            :
+            function(t){return};          
+        });
+  td.enter().append("td")
+    .text(function(d,i) { return i ? (i==2 ? d + "%":d.toFixed(2)) : d});
 }
 
-var data = [{"Nome":"Rick","Setor":"BI","Experiência":2,"Salário":7,"Seviragem":7,"Proatividade":7},{"Nome":"André","Setor":"BI","Experiência":5,"Salário":4,"Seviragem":10,"Proatividade":8},{"Nome":"Fraga","Setor":"BI","Experiência":1,"Salário":1,"Seviragem":8,"Proatividade":7},{"Nome":"Luciana","Setor":"BI","Experiência":0.2,"Salário":1,"Seviragem":2,"Proatividade":6},{"Nome":"Gabriel","Setor":"Des","Experiência":0.6,"Salário":1,"Seviragem":9,"Proatividade":3},{"Nome":"Leite","Setor":"Des","Experiência":0.6,"Salário":1,"Seviragem":5,"Proatividade":5},{"Nome":"Arruda","Setor":"Des","Experiência":10,"Salário":10,"Seviragem":9,"Proatividade":3},{"Nome":"Fernanda","Setor":"Des","Experiência":1.5,"Salário":1,"Seviragem":5,"Proatividade":5},{"Nome":"Lutz","Setor":"Gen","Experiência":10,"Salário":10,"Seviragem":4,"Proatividade":10},{"Nome":"João","Setor":"Gen","Experiência":6,"Salário":10,"Seviragem":5,"Proatividade":10},{"Nome":"Vicente","Setor":"Consultoria","Experiência":1.5,"Salário":3,"Seviragem":7,"Proatividade":8},{"Nome":"Vinícius","Setor":"Consultoria","Experiência":4,"Salário":5,"Seviragem":7,"Proatividade":8},{"Nome":"Kiapini","Setor":"Consultoria","Experiência":10,"Salário":10,"Seviragem":7,"Proatividade":8},{"Nome":"Augusto","Setor":"Consultoria","Experiência":3,"Salário":2,"Seviragem":5,"Proatividade":6},{"Nome":"Marcos","Setor":"Consultoria","Experiência":1,"Salário":1,"Seviragem":6,"Proatividade":6},{"Nome":"Simões","Setor":"Gen","Experiência":6,"Salário":10,"Seviragem":6,"Proatividade":7},{"Nome":"Rafael","Setor":"Consultoria","Experiência":6,"Salário":3,"Seviragem":6,"Proatividade":6}]
-
-
-var bc = new BubbleCluster({el:'body', key: key, dimensions: ["Experiência","Proatividade", "Salário","Setor"] });
-bc.update(data);
-
-
-
-
+render(incomes)
 </script>
 
 
