@@ -13,7 +13,7 @@ var app = app || {};
 			//'click  .js-??????-button'  : 'buttonClicked',			
 		},		
 		
-		options: {
+		defaults: {
 			
 		},	
 
@@ -24,7 +24,7 @@ var app = app || {};
 		// -------------------------------------------------------------------------------- //
 
 		initialize: function(){
-			
+			this.options = {}
 		},		
 
 		render: function () {

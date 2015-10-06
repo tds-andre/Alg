@@ -137,7 +137,7 @@ $(function () {
     }
 
     app.collections = {
-
+        files: new app.domain.FileCollection()
     };
 
 	
@@ -152,7 +152,7 @@ $(function () {
 
 
 
-    console.log("data-importer app loaded");
+    console.log("kmeans app loaded");
 });
 
 

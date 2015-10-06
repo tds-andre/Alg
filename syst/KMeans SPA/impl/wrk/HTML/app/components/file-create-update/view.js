@@ -14,7 +14,7 @@ var app = app || {};
 			'change .js-file'		     : 'fileSelected'
 		},		
 		
-		options: {
+		defaults: {
 			
 		},	
 
@@ -25,43 +25,37 @@ var app = app || {};
 		// -------------------------------------------------------------------------------- //
 
 		initialize: function(){
+			this.options = {};
+			this.uploadView = null;
 			
 		},		
 
 		render: function () {
+			var
+				self =this;
 			this.$el.html(this.template());
-			
+			this.uploadView = new app.FileUploadView({el: $(".js-upload-el", this.$el)[0]});
+			this.uploadView.start({
+				url: app.config.serverUrl + "/file/" + this.model.idd + "/upload", 
+				success: function(view){
+					self.trigger("create");
+				}
+			})
 			return this;			
 		},
 
 		start: function(options){
-			this.options = _.extend(this.options, options);
-			this.render();
-			return this;		
+			var
+				self = this;
+			$.extend(true, this.options, this.defaults, options);
+			this.model = new app.domain.File();			
+			app.collections.files.persist(this.model, {success: function(){self.render()}});		
+			
 		},
 
 		// -------------------------------------------------------------------------------- //
 		// View callbacks ----------------------------------------------------------------- //
-		// -------------------------------------------------------------------------------- //
-
-		browseClicked: function(ev){
-			
-			$(".js-file", this.$el)[0].click();
-		},
-
-		fileSelected: function(ev){
-			
-			var
-				form = $(ev.currentTarget).parents("form")[0],
-				formData = new FormData(form),
-				ss =  $(ev.currentTarget).val().split("\\");
-				name = ss[ss.length-1];
-			if(app.isDefined(name))
-				this.updateFilename(name);
-			this.uploadFile(name,formData);
-				
-			
-		},
+		// -------------------------------------------------------------------------------- //		
 
 		// -------------------------------------------------------------------------------- //
 		// Other callbacks ---------------------------------------------------------------- //
@@ -70,8 +64,6 @@ var app = app || {};
 		// -------------------------------------------------------------------------------- //
 		// Internal methods --------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
-		updateFilename: function(filename){
-			$(".js-file-name", this.$el).val(filename)
-		}
+		
 	});
 })(jQuery);

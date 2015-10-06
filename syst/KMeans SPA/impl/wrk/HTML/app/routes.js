@@ -15,6 +15,7 @@ app.views = app.views || {}
 	
 		view.start(); 
 	};
+
 	app.navigation.showClusterizationList = function(args){
 		var	
 			view,
@@ -25,6 +26,7 @@ app.views = app.views || {}
 	
 		view.start(); 
 	};
+
 	app.navigation.showFileList = function(args){
 		var	
 			view,
@@ -35,6 +37,7 @@ app.views = app.views || {}
 	
 		view.start(); 
 	};
+	
 	app.navigation.showNewFile = function(args){
 		var	
 			view,
