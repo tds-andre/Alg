@@ -40,6 +40,9 @@ function key(datum,i){
 
 var data = [{"Nome":"Rick","Setor":"BI","Experiência":2,"Salário":7,"Seviragem":7,"Proatividade":7},{"Nome":"André","Setor":"BI","Experiência":5,"Salário":4,"Seviragem":10,"Proatividade":8},{"Nome":"Fraga","Setor":"BI","Experiência":1,"Salário":1,"Seviragem":8,"Proatividade":7},{"Nome":"Luciana","Setor":"BI","Experiência":0.2,"Salário":1,"Seviragem":2,"Proatividade":6},{"Nome":"Gabriel","Setor":"Des","Experiência":0.6,"Salário":1,"Seviragem":9,"Proatividade":3},{"Nome":"Leite","Setor":"Des","Experiência":0.6,"Salário":1,"Seviragem":5,"Proatividade":5},{"Nome":"Arruda","Setor":"Des","Experiência":10,"Salário":10,"Seviragem":9,"Proatividade":3},{"Nome":"Fernanda","Setor":"Des","Experiência":1.5,"Salário":1,"Seviragem":5,"Proatividade":5},{"Nome":"Lutz","Setor":"Gen","Experiência":10,"Salário":10,"Seviragem":4,"Proatividade":10},{"Nome":"João","Setor":"Gen","Experiência":6,"Salário":10,"Seviragem":5,"Proatividade":10},{"Nome":"Vicente","Setor":"Consultoria","Experiência":1.5,"Salário":3,"Seviragem":7,"Proatividade":8},{"Nome":"Vinícius","Setor":"Consultoria","Experiência":4,"Salário":5,"Seviragem":7,"Proatividade":8},{"Nome":"Kiapini","Setor":"Consultoria","Experiência":10,"Salário":10,"Seviragem":7,"Proatividade":8},{"Nome":"Augusto","Setor":"Consultoria","Experiência":3,"Salário":2,"Seviragem":5,"Proatividade":6},{"Nome":"Marcos","Setor":"Consultoria","Experiência":1,"Salário":1,"Seviragem":6,"Proatividade":6},{"Nome":"Simões","Setor":"Gen","Experiência":6,"Salário":10,"Seviragem":6,"Proatividade":7},{"Nome":"Rafael","Setor":"Consultoria","Experiência":6,"Salário":3,"Seviragem":6,"Proatividade":6}]
 
+function key(datum,i){
+    return datum.Nome;
+}
 
 var bc = new BubbleCluster({el:'body', key: key, dimensions: ["Experiência","Proatividade", "Salário","Setor"] });
 bc.update(data);

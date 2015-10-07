@@ -30,7 +30,7 @@ app.views = app.views || {}
 	app.navigation.showFileList = function(args){
 		var	
 			view,
-			defaults= {};
+			defaults= {collection: app.collections.files};
 		args = _.extend(defaults, args);
 		app.navigation.current = app.navigation.prepare("fileList", app.FileListView, ["Uploads", "Consulta"], "Lista de Uploads", args);    	
 		view = app.navigation.current.view;

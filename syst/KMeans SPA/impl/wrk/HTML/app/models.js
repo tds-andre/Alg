@@ -2,7 +2,37 @@ var app = app || {};
 app.domain = app.domain || {};
 
 (function () {
-	'use strict';	
+	'use strict';
+	//------------------------------------------------------------------------------//
+	// Models ----------------------------------------------------------------------//
+	//------------------------------------------------------------------------------//
+
+	app.domain.File = app.BaseModel.extend({
+		nested: {
+			clusterizations: app.domain.ClusrizationCollection,
+			metrics: app.domain.MetricCollection,
+			dimensions: app.domain.DimensionCollection
+		}
+	});	
+
+	app.domain.Clusterization = app.BaseModel.extend({
+		nested:{			
+			file: app.domain.File			
+		}
+	});
+
+	app.domain.Metric = app.BaseModel.extend({
+		nested:{
+			file: app.domain.File
+		}
+	});
+
+	app.domain.Dimension = app.BaseModel.extend({
+		nested:{
+			file: app.domain.File
+		}
+	});
+
 
 	//------------------------------------------------------------------------------//
 	// Collections -----------------------------------------------------------------//
@@ -11,27 +41,37 @@ app.domain = app.domain || {};
 
 	app.domain.FileCollection = app.BaseCollection.extend({
 		path: "file",
-		model: app.domain.File
+		model: app.domain.File,
+		process: function(model, options){
+			options =  options || {};
+			$.ajax({
+				url: app.config.serverUrl + "/" +this.path + "/" + model.idd + "/process",
+				type: "GET",
+				success: function(data){
+					if(options.success)
+						options.success(model, data)
+				}
+			})
+
+		}
 	});
 
-	//------------------------------------------------------------------------------//
-	// Models ----------------------------------------------------------------------//
-	//------------------------------------------------------------------------------//
+	app.domain.ClusterizationCollection = app.BaseCollection.extend({
+		path: "clusterization",
+		model: app.domain.Clusterization
+	});
 
-	app.domain.File = app.BaseModel.extend({
-		nested: {
-			clusterizations: app.domain.ClusrizationCollection
-		}
+	app.domain.MetricCollection = app.BaseCollection.extend({
+		path: "metric",
+		model: app.domain.Metric
+	});
+
+	app.domain.DimensionCollection = app.BaseCollection.extend({
+		path: "dimension",
+		model: app.domain.Dimension
 	});
 
 	
-
-	app.domain.Clusterization = app.BaseModel.extend({
-		nested:{			
-			file: app.domain.File			
-		}
-	});
-
 	//------------------------------------------------------------------------------//
 	// Others (e.g.: enums, constants) ---------------------------------------------//
 	//------------------------------------------------------------------------------//

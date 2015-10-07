@@ -11,7 +11,8 @@ var app = app || {};
 		
 		events: {
 			'click  .js-file-container'  : 'browseClicked',
-			'change .js-file'		     : 'fileSelected'
+			'change .js-file'		     : 'fileSelected',
+			'click  .js-message-link'   : 'linkClicked'
 		},		
 		
 		defaults: {
@@ -38,6 +39,13 @@ var app = app || {};
 			this.uploadView.start({
 				url: app.config.serverUrl + "/file/" + this.model.idd + "/upload", 
 				success: function(view){
+					app.collections.files.process(self.model, {success: function(){
+						
+						self.trigger("ready");
+						self.showConclusion();
+
+					}});
+					self.showProcessing();
 					self.trigger("create");
 				}
 			})
@@ -64,6 +72,20 @@ var app = app || {};
 		// -------------------------------------------------------------------------------- //
 		// Internal methods --------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
+
+		showProcessing: function(){
+			this.uploadView.$el.fadeOut();
+			this.uploadView.remove();
+			$(".js-processing", this.$el).fadeIn();
+		},
+		showConclusion: function(){
+			$(".js-image", this.$el).hide();
+			$(".js-message", this.$el).html("Processamento concluído.")
+			$(".js-message-ad", this.$el).html("");
+			$(".js-message-ad-1", this.$el).html("Configure o arquivo ");
+			$(".js-message-link", this.$el).html("aqui");
+		}
+
 		
 	});
 })(jQuery);

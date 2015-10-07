@@ -90,13 +90,13 @@ function BubbleCluster(args){
 			self = this;
 
 		self.scale.radius = d3.scale.linear()
-		    .domain([d3.min(self.data, function(el){return el[self.keys[2]]}), d3.max(data, function(el){return el[self.keys[2]]})])
+		    .domain([d3.min(self.data, function(el){return el[self.keys[2]]}), d3.max(self.data, function(el){return el[self.keys[2]]})])
 		    .range([10, 40]);
 		self.scale.x = d3.scale.linear()
-		    .domain([d3.min(data, function(el){return el[self.keys[0]]}), d3.max(data, function(el){return el[self.keys[0]]})])
+		    .domain([d3.min(self.data, function(el){return el[self.keys[0]]}), d3.max(self.data, function(el){return el[self.keys[0]]})])
 		    .range([50, self.options.width - 50]);
 		self.scale.y = d3.scale.linear()
-		    .domain([d3.min(data, function(el){return el[self.keys[1]]}), d3.max(data, function(el){return el[self.keys[1]]})])
+		    .domain([d3.min(self.data, function(el){return el[self.keys[1]]}), d3.max(self.data, function(el){return el[self.keys[1]]})])
 		    .range([self.options.height - 50,  50]);
 	},
 
@@ -113,7 +113,7 @@ function BubbleCluster(args){
 
 	this.changeDimensions = function(keys){
 		this.keys = keys;
-		this.update(data);
+		this.update(this.data);
 	}
 
 	function selectColor(colorNum, colors){

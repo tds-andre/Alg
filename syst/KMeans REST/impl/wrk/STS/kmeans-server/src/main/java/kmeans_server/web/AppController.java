@@ -7,7 +7,7 @@ import java.io.FileOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kmeans_server.service.DataService;
+import kmeans_server.services.DataService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -45,6 +45,28 @@ public class AppController  extends WebMvcConfigurerAdapter {
 			e.printStackTrace();
 			msg.message = "You failed to upload. "+ e.getMessage();
        	responseCode = HttpStatus.INTERNAL_SERVER_ERROR;			
+		}
+		
+		return new ResponseEntity<Message>(msg ,headers, responseCode);
+	}
+	
+	
+	@RequestMapping(value = "file/{fileId}/process", method = RequestMethod.GET)
+	 public  @ResponseBody ResponseEntity<Message> uploadFile(@PathVariable long fileId){	 
+		HttpStatus  		responseCode = HttpStatus.OK;
+	  	final HttpHeaders	headers 	 = new HttpHeaders();
+	  	Message 			msg			 = new Message();
+	  	headers.setContentType(MediaType.APPLICATION_JSON); 
+	  	headers.setPragma("no-cache");
+		headers.setCacheControl("no-cache");
+		headers.setDate(0);
+		
+		try{
+			dataService.processFile(fileId);			
+		}catch(Exception e){
+			e.printStackTrace();
+			msg.message = "Falha ao processar arquivo. "+ e.getMessage();
+      	responseCode = HttpStatus.INTERNAL_SERVER_ERROR;			
 		}
 		
 		return new ResponseEntity<Message>(msg ,headers, responseCode);

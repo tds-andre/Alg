@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>D3 Workbench</title>
+
+    <meta name="description" content="Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   
+	<link href="./vendor/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+		
+
+
+	
+    <!--Page Related Scripts-->
+	<script src="./vendor/d3/d3.js"></script>
+	<script src="./vendor/jQuery/jquery-1.11.3.min.js"></script>
+	<script src="./vendor/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+  <script src="bubble-cluster.d3.js"></script>
+  <script src="flare.js"></script>
+  <script src="cities.js"></script>
+
+<style>
+
+
+</style>
+
+
+<script>
+function key(datum,i){
+    return datum.Name;
+}
+
+var bc = new BubbleCluster({el:'body', key: key, dimensions: ["TotalIncome","TotalExpense", "Population","UF"] });
+bc.update(cities);
+
+
+
+
+
+</script>
+
+
+
+	
+</body>
+<!--  /Body -->
+</html>

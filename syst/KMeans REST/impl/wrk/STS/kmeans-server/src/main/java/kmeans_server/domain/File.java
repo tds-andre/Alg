@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,38 +13,51 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class File {
-	
-	// Fields ----------------------------------------------------------------------------------//
-	//------------------------------------------------------------------------------------------//
-	
+
+	// ------------------------------------------------------------------------------------------//
+	// ------------------------------------------------------------------------------------------//
+	// Fields
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(nullable=true)
+	@Column(nullable = true)
 	private String name;
-	
-	@Column(nullable=true)
+
+	@Column(nullable = true)
 	private String location;
+
+	@Enumerated(EnumType.STRING)
+	private FileStatus status = FileStatus.CREATED;
 	
+	
+
+	// ------------------------------------------------------------------------------------------//
+	// ------------------------------------------------------------------------------------------//
+	// Getter & Setters
+
 	public String getName() {
 		return name;
 	}
-	
-	@OneToMany(targetEntity=Dimension.class, mappedBy="file")
+
+	public FileStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(FileStatus status) {
+		this.status = status;
+	}
+
+	@OneToMany(targetEntity = Dimension.class, mappedBy = "file")
 	public List<Dimension> dimensions;
-	
-	@OneToMany(targetEntity=Clusterization.class, mappedBy="file")
+
+	@OneToMany(targetEntity = Metric.class, mappedBy = "file")
 	public List<Metric> metrics;
-	
-	@OneToMany(targetEntity=Clusterization.class, mappedBy="file")
+
+	@OneToMany(targetEntity = Clusterization.class, mappedBy = "file")
 	private List<Clusterization> clusterizations;
 
-	// Getter & Setters ------------------------------------------------------------------------//
-	//------------------------------------------------------------------------------------------//
-	
-	
-	
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -78,9 +93,8 @@ public class File {
 	public void setClusterizations(List<Clusterization> clusterizations) {
 		this.clusterizations = clusterizations;
 	}
-	
-	
-	//------------------------------------------------------------------------------------------//
-	//------------------------------------------------------------------------------------------//
-	
+
+	// ------------------------------------------------------------------------------------------//
+	// ------------------------------------------------------------------------------------------//
+
 }
