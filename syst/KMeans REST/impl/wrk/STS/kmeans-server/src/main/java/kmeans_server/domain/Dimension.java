@@ -17,10 +17,23 @@ public class Dimension {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;	
 	
-	public String name;
+	private String name;
 	
 	@ManyToOne(optional=false, targetEntity=File.class)
-	public File file;
+	private File file;
+	
+	
+	
+	public Integer getOrder() {
+		return Order;
+	}
+
+	public void setOrder(Integer order) {
+		Order = order;
+	}
+
+	private Integer Order;
+	
 
 	public String getName() {
 		return name;

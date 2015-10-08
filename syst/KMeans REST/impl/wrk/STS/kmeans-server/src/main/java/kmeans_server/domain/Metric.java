@@ -16,7 +16,9 @@ public class Metric {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	public String name;	
+	public String name;
+	
+	public Integer Order;
 	
 	@ManyToOne(optional=false, targetEntity=File.class)
 	public File file;
@@ -24,8 +26,18 @@ public class Metric {
 	// Getter & Setters ------------------------------------------------------------------------//
 	//------------------------------------------------------------------------------------------//
 	
+	
+	
 	public String getName() {
 		return name;
+	}
+
+	public Integer getOrder() {
+		return Order;
+	}
+
+	public void setOrder(Integer order) {
+		Order = order;
 	}
 
 	public void setName(String name) {

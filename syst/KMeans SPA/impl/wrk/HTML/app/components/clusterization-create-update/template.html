@@ -1,4 +1,36 @@
 <script type="text/template" id="clusterization-create-update-template">
-clusterization-create-update-template
+
+	<div class="widget no-header radius-bordered">
+		<div class="widget-body">
+			<div class="well well-sm attached top text-right js-header">
+				<a class="btn btn-default js-cancel">Cancelar</a>									
+				<button class="btn btn-primary js-save" type="button">Salvar</button>
+			</div>
+			<div class="well attached js-main">
+
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="form-group simula_validacao">
+							<label class="control-label" for="name">Nome da Configuração <sup>*</sup></label>
+							<input type="text" name="name" class="js-name form-control">
+						</div>
+					</div>
+					<div class="col-sm-6 col-md-3">
+						<div class="form-group">
+							<label class="control-label" for="dataset">Arquivo associado <sup>*</sup></label>
+							<select name="dataset" class="form-control select js-conector">
+								<option>Selecione</option>								
+							</select>							
+						</div>
+					</div>							
+				</div>
+		</div>
+		<div class="well well-sm attached bottom text-right js-header">
+			<a class="btn btn-default js-cancel">Cancelar</a>									
+			<button class="btn btn-primary js-save" type="button">Salvar</button>
+		</div>	
+		</div>
+	</div>
+
 
 </script>

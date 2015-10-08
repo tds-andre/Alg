@@ -72,4 +72,24 @@ public class AppController  extends WebMvcConfigurerAdapter {
 		return new ResponseEntity<Message>(msg ,headers, responseCode);
 	}
 	
+	@RequestMapping(value = "clusterization/{clusterizationId}/run", method = RequestMethod.GET)
+	 public  @ResponseBody ResponseEntity<Message> executeClusterization(@PathVariable long clusterizationId){	 
+		HttpStatus  		responseCode = HttpStatus.OK;
+	  	final HttpHeaders	headers 	 = new HttpHeaders();
+	  	Message 			msg			 = new Message();
+	  	headers.setContentType(MediaType.APPLICATION_JSON); 
+	  	headers.setPragma("no-cache");
+		headers.setCacheControl("no-cache");
+		headers.setDate(0);
+		
+		try{
+			dataService.executeClusterization(clusterizationId);			
+		}catch(Exception e){
+			e.printStackTrace();
+			msg.message = "Falha ao processar arquivo. "+ e.getMessage();
+     	responseCode = HttpStatus.INTERNAL_SERVER_ERROR;			
+		}
+		
+		return new ResponseEntity<Message>(msg ,headers, responseCode);
+	}
 }
