@@ -31,7 +31,14 @@ public class File {
 	@Enumerated(EnumType.STRING)
 	private FileStatus status = FileStatus.CREATED;
 	
-	
+	@OneToMany(targetEntity = Dimension.class, mappedBy = "file")
+	public List<Dimension> dimensions;
+
+	@OneToMany(targetEntity = Metric.class, mappedBy = "file")
+	public List<Metric> metrics;
+
+	@OneToMany(targetEntity = Clusterization.class, mappedBy = "file")
+	private List<Clusterization> clusterizations;
 
 	// ------------------------------------------------------------------------------------------//
 	// ------------------------------------------------------------------------------------------//
@@ -49,14 +56,7 @@ public class File {
 		this.status = status;
 	}
 
-	@OneToMany(targetEntity = Dimension.class, mappedBy = "file")
-	public List<Dimension> dimensions;
 
-	@OneToMany(targetEntity = Metric.class, mappedBy = "file")
-	public List<Metric> metrics;
-
-	@OneToMany(targetEntity = Clusterization.class, mappedBy = "file")
-	private List<Clusterization> clusterizations;
 
 	public void setName(String name) {
 		this.name = name;

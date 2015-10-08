@@ -18,7 +18,7 @@ public class Metric {
 	
 	public String name;
 	
-	public Integer Order;
+	public Integer ColumnIndex;
 	
 	@ManyToOne(optional=false, targetEntity=File.class)
 	public File file;
@@ -32,13 +32,25 @@ public class Metric {
 		return name;
 	}
 
-	public Integer getOrder() {
-		return Order;
+	
+
+	public long getId() {
+		return id;
 	}
 
-	public void setOrder(Integer order) {
-		Order = order;
+
+
+	public Integer getColumnIndex() {
+		return ColumnIndex;
 	}
+
+
+
+	public void setColumnIndex(Integer columnIndex) {
+		ColumnIndex = columnIndex;
+	}
+
+
 
 	public void setName(String name) {
 		this.name = name;

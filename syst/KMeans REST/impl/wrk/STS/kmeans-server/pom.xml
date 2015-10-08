@@ -21,6 +21,7 @@
 			<groupId>com.maispartners</groupId>
 			<artifactId>ds.ajt</artifactId>
 			<version>1.20</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.maispartners</groupId>

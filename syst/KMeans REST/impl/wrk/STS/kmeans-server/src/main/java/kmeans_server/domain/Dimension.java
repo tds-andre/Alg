@@ -8,32 +8,37 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Dimension {
-	
 
-	// Fields ----------------------------------------------------------------------------------//
-	//------------------------------------------------------------------------------------------//
-	
+	// ------------------------------------------------------------------------------------------//
+	// Fields
+	// ------------------------------------------------------------------------------------------//
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;	
-	
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+
 	private String name;
-	
-	@ManyToOne(optional=false, targetEntity=File.class)
+
+	@ManyToOne(optional = false, targetEntity = File.class)
 	private File file;
-	
-	
-	
-	public Integer getOrder() {
-		return Order;
+
+	private Integer ColumnIndex;
+
+	// ------------------------------------------------------------------------------------------//
+	// Getter & Setters
+	// ------------------------------------------------------------------------------------------//
+
+	public Integer getColumnIndex() {
+		return ColumnIndex;
 	}
 
-	public void setOrder(Integer order) {
-		Order = order;
+	public void setColumnIndex(Integer columnIndex) {
+		ColumnIndex = columnIndex;
 	}
 
-	private Integer Order;
-	
+	public long getId() {
+		return id;
+	}
 
 	public String getName() {
 		return name;
@@ -50,11 +55,5 @@ public class Dimension {
 	public void setFile(File file) {
 		this.file = file;
 	}
-	
 
-	// Getter & Setters ------------------------------------------------------------------------//
-	//------------------------------------------------------------------------------------------//
-	
-	
-	
 }
