@@ -11,7 +11,10 @@ app.domain = app.domain || {};
 	
 
 	app.domain.Clusterization = app.BaseModel.extend({
-		
+		nested{
+			metrics: app.domain.MetricCollection,
+			selection: app.domain.SelectedMetricCollection
+		}
 	});
 
 	app.domain.Metric = app.BaseModel.extend({
