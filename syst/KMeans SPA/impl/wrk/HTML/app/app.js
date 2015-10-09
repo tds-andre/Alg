@@ -137,7 +137,9 @@ $(function () {
     }
 
     app.collections = {
-        files: new app.domain.FileCollection()
+        files: new app.domain.FileCollection(),
+        selecteds: new app.domain.SelectedMetricCollection(),
+        clusterizations: new app.domain.ClusterizationCollection()
     };
 
 	

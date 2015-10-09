@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import kmeans_server.domain.Clusterization;
+import kmeans_server.domain.ClusterizationStatus;
 import kmeans_server.domain.Dimension;
 import kmeans_server.domain.FileStatus;
 import kmeans_server.domain.Metric;
@@ -129,6 +130,10 @@ public class DataService {
 
 	public void executeClusterization(long configId) throws Exception {
 		Clusterization config = clusterizations.findOne(configId);
+		//if(!config.getStatus().equals(ClusterizationStatus.CREATED))
+		//	throw new FlowException("Não é possível rodar o algorítimo no mommento.");
+		config.setStatus(ClusterizationStatus.RUNNING);
+		clusterizations.save(config);
 		kmeans_server.domain.File file = config.getFile();
 		Double threshold = config.getQuality();
 		Double score = .0;
@@ -146,7 +151,9 @@ public class DataService {
 				clusters = km.cluster(data);
 				ClusterEvaluation sse = new SumOfSquaredErrors();
 				score = sse.score(clusters);
-				gain = 1 - score / last;
+				if(last>0)
+					gain = 1 - score / last;
+				last = score;
 				clusterCount++;
 			}
 
@@ -158,9 +165,9 @@ public class DataService {
 			Iterator<CSVRecord> rows = csv.open();
 			for(String header:csv.getHeaders())
 				writer.write(header + "\t");
-			writer.write("\n");
+			writer.write("cluster\n");
 			
-			int rowId = 0;
+			Integer rowId = 0;
 			
 			while(rows.hasNext()){
 				CSVRecord row = rows.next();
@@ -169,7 +176,7 @@ public class DataService {
 				for (int i = 0; i < clusters.length; i++) {					
 					for (int j = 0; j < clusters[i].size(); j++) {
 						Instance datum = clusters[i].get(j);
-						if((Integer)datum.classValue()==rowId){
+						if(((String)datum.classValue()).equals(rowId.toString())){
 							current = datum;
 							clusterIndex = i;
 							break;
@@ -182,18 +189,19 @@ public class DataService {
 					for(int i = 0; i< row.size(); i++){
 						writer.write(row.get(i) + "\t");
 					}
-					writer.write("\n");
+					writer.write(clusterIndex.toString()+"\n");
 				}
 				
 				rowId++;
 			}			
 			writer.write("]");
-			
+			writer.close();
+			config.setStatus(ClusterizationStatus.READY);
+			clusterizations.save(config);
 			
 		} catch (Exception e) {
 			throw e;
 		}
-
 	}
 
 	private String prepareFileForJavaml(Clusterization config)
@@ -217,5 +225,10 @@ public class DataService {
 		}
 		writer.close();
 		return file.getLocation() + config.getId() + ".javaml";
+	}
+
+	public File getFile(long clusterizationId) {
+		Clusterization config = clusterizations.findOne(clusterizationId);
+		return new File(config.getFile().getLocation() + config.getId() + ".tsv");
 	}
 }

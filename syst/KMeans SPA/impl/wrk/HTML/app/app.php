@@ -4,6 +4,8 @@
 <?php include_once "components/base-list-item/template.html"; ?>
 <?php include_once "components/base-details/template.html"; ?>
 <?php include_once "components/base-create-update/template.html"; ?>
+<?php include_once "components/metric-list/template.html"; ?>
+<?php include_once "components/metric-list-item/template.html"; ?>
 <?php include_once "components/clusterization-list/template.html"; ?>
 <?php include_once "components/clusterization-list-item/template.html"; ?>
 <?php include_once "components/clusterization-details/template.html"; ?>
@@ -13,6 +15,8 @@
 <?php include_once "components/file-details/template.html"; ?>
 <?php include_once "components/file-create-update/template.html"; ?>
 <?php include_once "components/file-upload/template.html"; ?>
+<?php include_once "components/graph/template.html"; ?>
+
 
 
 
@@ -59,12 +63,14 @@
 
 
 <!--Libraries-->
+
 <script src="vendor/underscore/underscore-min.js" type="text/javascript"></script>
 <script src="vendor/backbone/backbone.js" type="text/javascript"></script>
 <script src="vendor/jfeldstein/jQuery.AjaxFileUpload.js/jQuery.AjaxFileUpload.js" type="text/javascript"></script>
 <script type="text/javascript" src="libs/spring-model.js"></script>
 <script type="text/javascript" src="libs/spring-collection.js"></script>
-
+<script type="text/javascript" src="vendor/d3/d3.js"></script>
+<script type="text/javascript" src="libs/bubble-cluster.d3.js"></script>
 <!--Groundwork-->
 <script type="text/javascript" src="config.js"></script>
 <script type="text/javascript" src="models.js"></script>
@@ -76,6 +82,8 @@
 <script type="text/javascript" src="components/base-details/view.js"></script>
 <script type="text/javascript" src="components/base-create-update/view.js"></script>
 <script type="text/javascript" src="components/file-upload/view.js"></script>
+<script type="text/javascript" src="components/metric-list/view.js"></script>
+<script type="text/javascript" src="components/metric-list-item/view.js"></script>
 <script type="text/javascript" src="components/clusterization-list/view.js"></script>
 <script type="text/javascript" src="components/clusterization-list-item/view.js"></script>
 <script type="text/javascript" src="components/clusterization-details/view.js"></script>
@@ -84,11 +92,14 @@
 <script type="text/javascript" src="components/file-list-item/view.js"></script>
 <script type="text/javascript" src="components/file-details/view.js"></script>
 <script type="text/javascript" src="components/file-create-update/view.js"></script>
+<script type="text/javascript" src="components/graph/view.js"></script>
 
 
 
 <!--App & Initialization-->
 <script type="text/javascript" src="routes.js"></script>
 <script type="text/javascript" src="app.js"></script>
+
+
 
 

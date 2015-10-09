@@ -2,8 +2,11 @@ package kmeans_server.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,36 +15,47 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Clusterization {
-	
-	// Fields ------------------------------------------------------------------------//
-	//------------------------------------------------------------------------------------------//
-	
+
+	// Fields
+	// ------------------------------------------------------------------------//
+	// ------------------------------------------------------------------------------------------//
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 
-	@Column(nullable=true)
+	@Column(nullable = true)
 	private String name;
-	
-	@ManyToOne(optional=false, targetEntity=File.class)
+
+	@ManyToOne(optional = false, targetEntity = File.class)
 	private File file;
-	
-	@OneToMany(targetEntity = SelectedMetric.class, mappedBy = "clusterization")
+
+	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = SelectedMetric.class, mappedBy = "clusterization")
 	private List<SelectedMetric> selection;
-	
+
 	private int inital = 5;
-	
-	private double quality = .1;
+
+	private double quality = 0.1;
+
+	@Enumerated(EnumType.STRING)
+	private ClusterizationStatus status = ClusterizationStatus.CREATED;
+
+	// Getter & Setters
+	// ------------------------------------------------------------------------//
+	// ------------------------------------------------------------------------------------------//
 	
 	
 
-	// Getter & Setters ------------------------------------------------------------------------//
-	//------------------------------------------------------------------------------------------//
-	
-	
-	
 	public List<SelectedMetric> getSelection() {
 		return selection;
+	}
+
+	public ClusterizationStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(ClusterizationStatus status) {
+		this.status = status;
 	}
 
 	public int getInital() {
@@ -71,7 +85,7 @@ public class Clusterization {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -83,9 +97,8 @@ public class Clusterization {
 	public void setFile(File file) {
 		this.file = file;
 	}
-	
-	
-	//------------------------------------------------------------------------------------------//
-	//------------------------------------------------------------------------------------------//
-	
+
+	// ------------------------------------------------------------------------------------------//
+	// ------------------------------------------------------------------------------------------//
+
 }

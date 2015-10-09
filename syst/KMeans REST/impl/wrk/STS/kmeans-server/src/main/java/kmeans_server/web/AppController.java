@@ -1,15 +1,15 @@
 package kmeans_server.web;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 
 import kmeans_server.services.DataService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -91,5 +91,12 @@ public class AppController  extends WebMvcConfigurerAdapter {
 		}
 		
 		return new ResponseEntity<Message>(msg ,headers, responseCode);
+	}
+	
+	
+	@RequestMapping(value = "clusterization/{clusterizationId}/get", method = RequestMethod.GET)
+	@ResponseBody
+	public FileSystemResource getFile(@PathVariable long clusterizationId) {
+	    return new FileSystemResource(dataService.getFile(clusterizationId)); 
 	}
 }

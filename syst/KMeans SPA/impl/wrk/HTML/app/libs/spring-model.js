@@ -6,6 +6,7 @@ var app = app || {};
 app.BaseModel = Backbone.Model.extend({
 		nested: {},
 		inherited: {},
+		
 		destroy: function(args){
 			for(var key in this.inherited){
 
@@ -58,6 +59,30 @@ app.BaseModel = Backbone.Model.extend({
 				this.setIdentity(a._links.self.href);
 			return a;
 		},
+		nest: function(_args){		
+			var args = _args || {}
+			var _this = this;
+			var links = args.links || this.attributes._links;
+			this.dummy = {};		
+	        for(var key in links)
+	        {
+	            if(key=='self'){
+	            	this.href = links[key].href;
+	            	continue;
+	            }
+	            var embeddedClass = this.nested[key] || this.inherited[key];
+	            var embeddedLink = links[key].href;
+	            if(embeddedClass)            
+	            	var mdl = new embeddedClass();
+	            else
+	            	var mdl = new app.BaseModel();
+	            if(mdl instanceof app.BaseModel)          
+	           		this.set(key, mdl);
+	           	else
+	           		this.set(key,mdl);	          	
+	        }
+	        this.trigger("nest");
+		},
 		nestedFetch: function(_args, _deep){
 			var deep = _deep || false;
 			var args = _args || {}
@@ -83,7 +108,7 @@ app.BaseModel = Backbone.Model.extend({
 
 	           	if(args.beforeFetch)
 	           		args.beforeFetch(this, mdl)
-	           	mdl.fetch({url: embeddedLink});
+	           	mdl.fetch({url: embeddedLink, reset: true});
 	           	if(deep)
 	           		mdl.nestedFetch(null, true)
 	          	

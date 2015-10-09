@@ -3,29 +3,28 @@ var app = app || {};
 
 	'use strict';	
 
-	app.ClusterizationListItemView = Backbone.View.extend({
+	app.GraphView = Backbone.View.extend({
 
-		tagName: "tr",
-
+		// --------------------------------------------------------------------------------- //
+		// Variables ----------------------------------------------------------------------- //
+		// --------------------------------------------------------------------------------- //
+		
 		events: {
-			'click  .js-detail'  : 'detailClicked',
-			'click  .js-edit'  : 'editClicked',
-			'click  .js-delete'  : 'deleteClicked',
-			'click  .js-link'    : 'linkClicked'
+			//'click  .js-??????-button'  : 'buttonClicked',			
 		},		
 		
-		options: {
+		defaults: {
 			
 		},	
 
-		template: _.template($('#clusterization-list-item-template').html()),
+		template: _.template($('#graph-template').html()),
 
 		// -------------------------------------------------------------------------------- //
 		// Core --------------------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
 
 		initialize: function(){
-			this.options = {};
+			this.options = {}
 		},		
 
 		render: function () {
@@ -36,39 +35,36 @@ var app = app || {};
 		},
 
 		start: function(options){
-			$.extend(true, this.options, this.defaults, options);
-			
+			var
+				self = this;
+			$.extend(this.options, this.defaults, options);
+			if(this.model.get("status")=="CREATED"){
+				app.collections.clusterizations.run(this.model, {success: function(error,data){
+					d3.tsv(app.config.serverUrl + "/clusterization/" + self.model.idd + "/get",function(){
+						self.data = data;
+						self.createD3();
+					})
+				}})
+				return this;
+			}
+			else
+				d3.tsv(app.config.serverUrl + "/clusterization/" + self.model.idd + "/get",function(data, error){
+						self.data = data;
+						self.createD3();
+					});		
+		},
+
+		createD3: function(){
+			$(".js-main", this.$el).show();
+			$(".js-progress", this.$el).hide();
 		},
 
 		// -------------------------------------------------------------------------------- //
 		// View callbacks ----------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
 
-		detailClicked: function(ev){
-			this.trigger("detail",this);
-		},
-		editClicked: function(ev){
-			this.trigger("edit",this);
-		},
-		linkClicked: function(ev){
-			this.trigger("link",this);
-		},
-		deleteClicked: function(ev){
-			var
-				self = this;
-			bootbox.confirm("Tem certeza que deseja excluir o arquivo "+this.model.get("name")+" ?", function (result) {
-				if (result) {
-					self.model.destroy({
-						success:function(ev){
-							self.trigger("delete",self);
-						},
-						error: function(a,b,error){
-							self.trigger("error",{view: self, message:error});
-						}
-					})
-				}
-			});
-		},
+		buttonClicked: function(ev){}
+
 		// -------------------------------------------------------------------------------- //
 		// Other callbacks ---------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //

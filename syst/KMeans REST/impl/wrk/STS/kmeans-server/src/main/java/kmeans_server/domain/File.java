@@ -2,6 +2,7 @@ package kmeans_server.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -31,13 +32,13 @@ public class File {
 	@Enumerated(EnumType.STRING)
 	private FileStatus status = FileStatus.CREATED;
 	
-	@OneToMany(targetEntity = Dimension.class, mappedBy = "file")
+	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = Dimension.class, mappedBy = "file")
 	public List<Dimension> dimensions;
 
-	@OneToMany(targetEntity = Metric.class, mappedBy = "file")
+	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = Metric.class, mappedBy = "file")
 	public List<Metric> metrics;
 
-	@OneToMany(targetEntity = Clusterization.class, mappedBy = "file")
+	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = Clusterization.class, mappedBy = "file")
 	private List<Clusterization> clusterizations;
 
 	// ------------------------------------------------------------------------------------------//

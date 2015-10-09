@@ -2,27 +2,57 @@ var app = app || {};
 app.navigation = app.navigation || {};
 app.navigation.views = {};
 app.views = app.views || {}
+var global;
 
 
 	'use strict';
-	app.navigation.showNewClusterization = function(args){
+	app.navigation.showGraph= function(args){
 		var	
 			view,
 			defaults= {};
 		args = _.extend(defaults, args);
-		app.navigation.current = app.navigation.prepare("newClusterization", app.ClusterizationCreateUpdateView, ["Clusterização", "Nova"], "Nova Configuração do Algorítmo", args);    	
+		app.navigation.current = app.navigation.prepare("graph", app.GraphView,  ["Clusterização"], "Análise", args);    	
 		view = app.navigation.current.view;
 	
 		view.start(); 
 	};
 
+
+
+	app.navigation.showNewClusterization = function(args){
+		var	
+			view,
+			defaults= {collection: app.collections.files},
+			daView = null;
+		args = _.extend(defaults, args);
+		app.navigation.current = app.navigation.prepare("newClusterization", app.ClusterizationCreateUpdateView, ["Clusterização", "Nova"], "Nova Configuração do Algorítmo", args);    	
+		view = app.navigation.current.view;
+		view.on("create", function(){
+			app.views.validation.success("Configuração criada!");
+			app.navigation.to("ClusterizationList");
+			/*var model = new app.domain.Clusterization();
+			model.fetch({url: v2.model.href, success: function(){
+				app.collections.clusterizations.run(model, {success: function(){}})
+				app.views.validation.success("Configuração criada <h5>Clique <a id='run-current-config' href='#'>aqui</a> se deseja clusteriar o arquivo agora.</h5>")
+				$("#run-current-config").on("click", function(ev){
+					app.views.validation.$el.modal("hide")
+					app.navigation.to("Graph", {model: model})
+				});
+			}});			*/
+		});
+		view.start();
+	};
+
 	app.navigation.showClusterizationList = function(args){
 		var	
 			view,
-			defaults= {};
+			defaults= {collection: app.collections.clusterizations};
 		args = _.extend(defaults, args);
 		app.navigation.current = app.navigation.prepare("clusterizationList", app.ClusterizationListView,  ["Clusterização", "Consulta"], "Lista Configurações do Algorítmo", args);    	
 		view = app.navigation.current.view;
+		view.on("link", function(v){
+			app.navigation.to("Graph", {model: v.model});
+		})
 	
 		view.start(); 
 	};

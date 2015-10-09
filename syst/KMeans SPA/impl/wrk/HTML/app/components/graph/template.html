@@ -1,0 +1,165 @@
+<script type="text/template" id="graph-template">
+	<% if(status!="READY") {%>
+	<div class="widget">
+            <div class="widget-header bordered-bottom bordered-themeprimary">
+                <i class="widget-icon fa fa-tasks themeprimary"></i>
+                <span class="widget-caption themeprimary">Task Board</span>
+            </div><!--Widget Header-->
+            <div class="widget-body no-padding">
+                <div class="task-container">
+                    <div class="task-search">
+                        <span class="input-icon">
+                            <input type="text" class="form-control" placeholder="Search Tasks">
+                            <i class="fa fa-search gray"></i>
+                        </span>
+                    </div>
+                    <ul class="tasks-list">
+                        <li class="task-item">
+                            <div class="task-check">
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="text"></span>
+                                </label>
+                            </div>
+                            <div class="task-state">
+                                <span class="label label-yellow">
+                                    In Progress
+                                </span>
+                            </div>
+                            <div class="task-time">1 hour ago</div>
+                            <div class="task-body">Ask to the sysadmins to install Python 3 on the server and run it</div>
+                            <div class="task-creator"><a href="">Cameron Hetfield</a></div>
+                            <div class="task-assignedto">assigned to you</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-check">
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="text"></span>
+                                </label>
+                            </div>
+                            <div class="task-state">
+                                <span class="label label-orange">
+                                    Active
+                                </span>
+                            </div>
+                            <div class="task-time">2 hours ago</div>
+                            <div class="task-body">Write documentation for the new API with test and deploy specifications</div>
+                            <div class="task-creator"><a href="">Behrang Nitsche</a></div>
+                            <div class="task-assignedto">assigned to you</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-check">
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="text"></span>
+                                </label>
+                            </div>
+                            <div class="task-state">
+                                <span class="label label-palegreen">
+                                    Approved
+                                </span>
+                            </div>
+                            <div class="task-time">yesterday</div>
+                            <div class="task-body">Code refactoring and rewriting silly codes and test it</div>
+                            <div class="task-creator"><a href="">David Fincher</a></div>
+                            <div class="task-assignedto">assigned to Kim</div>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--Widget Body-->
+<div class="js-main">
+<div class="widget">
+            <div class="widget-header bordered-bottom bordered-themeprimary">
+                <i class="widget-icon fa fa-tasks themeprimary"></i>
+                <span class="widget-caption themeprimary">Task Board</span>
+            </div><!--Widget Header-->
+            <div class="widget-body no-padding">
+                <div class="task-container">
+                    <div class="task-search">
+                        <span class="input-icon">
+                            <input type="text" class="form-control" placeholder="Search Tasks">
+                            <i class="fa fa-search gray"></i>
+                        </span>
+                    </div>
+                    <ul class="tasks-list">
+                        <li class="task-item">
+                            <div class="task-check">
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="text"></span>
+                                </label>
+                            </div>
+                            <div class="task-state">
+                                <span class="label label-yellow">
+                                    In Progress
+                                </span>
+                            </div>
+                            <div class="task-time">1 hour ago</div>
+                            <div class="task-body">Ask to the sysadmins to install Python 3 on the server and run it</div>
+                            <div class="task-creator"><a href="">Cameron Hetfield</a></div>
+                            <div class="task-assignedto">assigned to you</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-check">
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="text"></span>
+                                </label>
+                            </div>
+                            <div class="task-state">
+                                <span class="label label-orange">
+                                    Active
+                                </span>
+                            </div>
+                            <div class="task-time">2 hours ago</div>
+                            <div class="task-body">Write documentation for the new API with test and deploy specifications</div>
+                            <div class="task-creator"><a href="">Behrang Nitsche</a></div>
+                            <div class="task-assignedto">assigned to you</div>
+                        </li>
+                        <li class="task-item">
+                            <div class="task-check">
+                                <label>
+                                    <input type="checkbox">
+                                    <span class="text"></span>
+                                </label>
+                            </div>
+                            <div class="task-state">
+                                <span class="label label-palegreen">
+                                    Approved
+                                </span>
+                            </div>
+                            <div class="task-time">yesterday</div>
+                            <div class="task-body">Code refactoring and rewriting silly codes and test it</div>
+                            <div class="task-creator"><a href="">David Fincher</a></div>
+                            <div class="task-assignedto">assigned to Kim</div>
+                        </li>
+                    </ul>
+                </div>
+            </div><!--Widget Body-->
+        </div>
+
+	</div>
+	<% } %>
+	<% if(status!="READY") {%>
+	<div class="js-processing">
+		<div class="widget no-header radius-bordered">
+			<div class="widget-body">	
+				<div class="well attached js-main">
+					<div class="row js-image">
+						<div class="col-sm-offset-1 col-sm-10 col-md-6 col-md-offset-3">
+							<img src="resources/spinner.gif"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-offset-1 col-sm-10 col-md-6 col-md-offset-3">
+							<h4 class="js-message">Executando algorítmo.</h4>
+							<h6><span class="js-message-ad-1 js-message-ad"> Será exibido assim que disponível. Também é possível acompanar a execução pela </span><strong><a class="js-message-link" href="#">lista.</a></strong><span class="js-message-ad-2 js-message-ad"><span></h4>						
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>		
+	</div>
+	<% } %>
+</script>
