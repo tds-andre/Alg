@@ -12,7 +12,7 @@ function BubbleCluster(args){
 
 	
 	this.options = {};
-	$.extend(this.options, args, defaults);
+	$.extend(this.options, defaults, args);
 
     this.scale = {};
     this.keys = args.dimensions; 
