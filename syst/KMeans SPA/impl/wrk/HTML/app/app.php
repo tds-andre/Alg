@@ -71,6 +71,8 @@
 <script type="text/javascript" src="libs/spring-collection.js"></script>
 <script type="text/javascript" src="vendor/d3/d3.js"></script>
 <script type="text/javascript" src="libs/bubble-cluster.d3.js"></script>
+<link href="libs/bubble-cluster.d3.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="libs/tds-spinner.js"></script>
 <!--Groundwork-->
 <script type="text/javascript" src="config.js"></script>
 <script type="text/javascript" src="models.js"></script>

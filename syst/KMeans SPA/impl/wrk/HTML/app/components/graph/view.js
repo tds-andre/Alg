@@ -29,22 +29,9 @@ var app = app || {};
 		},		
 
 		render: function () {
-			var
-				self = this,
-				json = this.model.toJSON();
-			this.$el.html(this.template(json));
-			this.model.nest();
-			this.listenTo(this.model.get("metrics"), "reset", this.setMetrics);
-			this.listenTo(this.model.get("metrics"), "reset", thus.setSelection);
-			this.model.get("metrics").fetch({reset: true})
-			this.model.get("metrics").fetch({reset: true})
-						
-			return this;			
+			this.$el.html(this.template());	
 		},
-
-		setMetrics: function(){
-
-		},
+		
 
 		setSelection: function(){
 			var self = this;

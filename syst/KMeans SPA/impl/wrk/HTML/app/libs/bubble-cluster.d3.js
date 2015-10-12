@@ -15,6 +15,7 @@ function BubbleCluster(args){
 	$.extend(this.options, defaults, args);
 
     this.scale = {};
+    this.axes = {};
     this.keys = args.dimensions; 
     this.el = this.options.el
     this.clusters = [];
@@ -26,6 +27,26 @@ function BubbleCluster(args){
 		.attr("width", this.options.width)
     	.attr("height", this.options.height);
     
+    this.updateAxes = function(){
+         $(".axis", this.el).remove();
+        this.axes.x = d3.svg.axis()
+                  .scale(this.scale.x)
+                  .orient("bottom");
+        this.axes.y = d3.svg.axis()
+                  .scale(this.scale.y)
+                  .orient("left");        
+       
+        this.chart.append("g")
+            .attr("class", "axis")  //Assign "axis" class
+            .attr("transform", "translate(0," + (this.options.height - 20) + ")")
+            .call(this.axes.x);
+         this.chart.append("g")
+            .attr("class", "axis")  //Assign "axis" class
+            .attr("transform", "translate(" + 20 + ",0)")
+            .call(this.axes.y);
+    }
+
+
     this.update = function(data){
     	var
     		self =this;
@@ -34,6 +55,7 @@ function BubbleCluster(args){
 
 		self.updateScales();
 		self.updateClusters();
+        self.updateAxes();
 
         //update
         circle

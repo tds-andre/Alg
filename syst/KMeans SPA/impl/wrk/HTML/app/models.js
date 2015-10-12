@@ -7,79 +7,27 @@ app.domain = app.domain || {};
 	// Models ----------------------------------------------------------------------//
 	//------------------------------------------------------------------------------//
 
-
 	
-
-	app.domain.Clusterization = app.BaseModel.extend({
-		nested{
-			metrics: app.domain.MetricCollection,
-			selection: app.domain.SelectedMetricCollection
-		}
-	});
 
 	app.domain.Metric = app.BaseModel.extend({
 		
 	});
-
-	app.domain.Dimension = app.BaseModel.extend({
-		
-	});
-
-	app.domain.SelectedMetric = app.BaseModel.extend({
-		nested:{
-			metric: app.domain.Metric,
-			clusterization: app.domain.Clusterization
-		}
-	})
-
-	app.domain.SelectedMetricCollection = app.BaseCollection.extend({
-		path:"selected",
-		model: app.domain.SelectedMetric
-	})
-
-
-	
-
-
-	//------------------------------------------------------------------------------//
-	// Collections -----------------------------------------------------------------//
-	//------------------------------------------------------------------------------//
-
-
-	
-
-	app.domain.ClusterizationCollection = app.BaseCollection.extend({
-		path: "clusterization",
-		model: app.domain.Clusterization,
-		run: function(model, options){
-			options =  options || {};
-			$.ajax({
-				url: app.config.serverUrl + "/" +this.path + "/" + model.idd + "/run",
-				type: "GET",
-				success: function(data){
-					if(options.success)
-						options.success(model, data)
-				}
-			})
-		}
-
-	});
-
 	app.domain.MetricCollection = app.BaseCollection.extend({
 		path: "metric",
 		model: app.domain.Metric
 	});
 
+	//------------------------------------------------------------------------------//
+
+	app.domain.Dimension = app.BaseModel.extend({
+		
+	});
 	app.domain.DimensionCollection = app.BaseCollection.extend({
 		path: "dimension",
 		model: app.domain.Dimension
 	});
 
-	
 	//------------------------------------------------------------------------------//
-	// Others (e.g.: enums, constants) ---------------------------------------------//
-	//------------------------------------------------------------------------------//
-
 
 	app.domain.File = app.BaseModel.extend({
 		nested: {
@@ -105,6 +53,63 @@ app.domain = app.domain || {};
 
 		}
 	});
+
+	//------------------------------------------------------------------------------//	
+
+	app.domain.SelectedMetric = app.BaseModel.extend({
+		nested:{
+			metric: app.domain.Metric
+			
+		},
+		initialize: function(){
+			this.nested.clusterization= app.domain.Clusterization
+		}
+
+	});
+	app.domain.SelectedMetricCollection = app.BaseCollection.extend({
+		path:"selected",
+		model: app.domain.SelectedMetric
+	});
+
+	//------------------------------------------------------------------------------//
+
+	app.domain.Clusterization = app.BaseModel.extend({
+		nested:{
+			metrics: app.domain.MetricCollection,
+			selection: app.domain.SelectedMetricCollection
+		}
+	});
+	app.domain.ClusterizationCollection = app.BaseCollection.extend({
+		path: "clusterization",
+		model: app.domain.Clusterization,
+		run: function(model, options){
+			options =  options || {};
+			$.ajax({
+				url: app.config.serverUrl + "/" +this.path + "/" + model.idd + "/run",
+				type: "GET",
+				success: function(data){
+					if(options.success)
+						options.success(model, data)
+				}
+			})
+		}
+
+	});
+
+	//------------------------------------------------------------------------------//
+
+	
+
+
+	
+
+	
+	//------------------------------------------------------------------------------//
+	// Others (e.g.: enums, constants) ---------------------------------------------//
+	//------------------------------------------------------------------------------//
+
+
+	
 			
 	
 
