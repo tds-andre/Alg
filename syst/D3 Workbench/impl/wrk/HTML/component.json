@@ -1,0 +1,8 @@
+{
+    "name": "alg-graphs",
+    "version": "*",
+    "main": "app/template.html",]
+    "dependencies": {
+		"d3": "latest"
+    }
+}
