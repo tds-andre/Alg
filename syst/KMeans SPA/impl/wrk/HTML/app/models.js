@@ -30,8 +30,7 @@ app.domain = app.domain || {};
 	//------------------------------------------------------------------------------//
 
 	app.domain.File = app.BaseModel.extend({
-		nested: {
-			clusterizations: app.domain.ClusterizationCollection,
+		nested: {			
 			metrics: app.domain.MetricCollection,
 			dimensions: app.domain.DimensionCollection
 		}
@@ -74,9 +73,26 @@ app.domain = app.domain || {};
 	//------------------------------------------------------------------------------//
 
 	app.domain.Clusterization = app.BaseModel.extend({
+		defaults:{
+			initial: 3,
+			quality: 0.1
+		}, 
 		nested:{
 			metrics: app.domain.MetricCollection,
-			selection: app.domain.SelectedMetricCollection
+			selection: app.domain.SelectedMetricCollection,
+			file: app.domain.File
+		},
+		validate: function(attributes, options){
+			var 				
+				result =[];
+			if(!app.isDefined(attributes.name) || attributes.name=="")
+				result.push({field:"name",message:"Nome indefinido. "});
+			if(!app.isDefined(attributes.file))
+				result.push({field:"file",message:"Arquivo indefinido. "});			
+			if(result.length>0){
+				this.trigger("invalid", this, result)
+				return result;
+			}
 		}
 	});
 	app.domain.ClusterizationCollection = app.BaseCollection.extend({

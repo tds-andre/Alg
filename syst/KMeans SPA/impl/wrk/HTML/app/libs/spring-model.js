@@ -7,6 +7,7 @@ app.BaseModel = Backbone.Model.extend({
 		nested: {},
 		inherited: {},
 		
+
 		destroy: function(args){
 			for(var key in this.inherited){
 
@@ -79,10 +80,12 @@ app.BaseModel = Backbone.Model.extend({
 	            if(mdl instanceof app.BaseModel)          
 	           		this.set(key, mdl);
 	           	else
-	           		this.set(key,mdl);	          	
+	           		this.set(key,mdl);
+	           	mdl.href = embeddedLink;         	
 	        }
 	        this.trigger("nest");
 		},
+		
 		nestedFetch: function(_args, _deep){
 			var deep = _deep || false;
 			var args = _args || {}

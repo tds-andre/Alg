@@ -10,7 +10,7 @@ var app = app || {};
 		// --------------------------------------------------------------------------------- //
 		
 		events: {
-			//'click  .js-??????-button'  : 'buttonClicked',			
+			'change  .js-dim'  : 'metricChanged',			
 		},		
 		
 		defaults: {
@@ -26,50 +26,107 @@ var app = app || {};
 		initialize: function(){
 			this.options = {}
 			this.graph = null;
+			this.hash = (Math.random() * 100000000).toFixed();
 		},		
 
 		render: function () {
-			this.$el.html(this.template());	
-		},
-		
-
-		setSelection: function(){
-			var self = this;
-			d3.tsv(app.config.serverUrl + "/clusterization/" + self.model.idd + "/get",function(error, data){
-				self.data = data;
-				self.createD3();
-			});
-		}, 
+			this.$el.html(this.template());
+			$(".js-graph", this.$el).prop("id", "graph-"+this.hash);
+			this.$dim = $(".js-dim", this.$el);
+		},		
 
 		start: function(options){
 			var
+				file = null,
 				self = this;
 			$.extend(this.options, this.defaults, options);
-			return this.render();
+			this.render();
+			this.model.nest();			
+			file = this.model.get("file");
+			file.fetch({url: this.model.get("file").href, success: function(){
+				file.nest();
+				self.listenTo(file.get("metrics"), "reset", self.metricsReset);
+				file.get("metrics").fetch({reset: true, url: file.get("metrics").href});
+			}});			
+			
 				
 		},
 
-		createD3: function(){
-			$(".js-main", this.$el).show();
-			$(".js-progress", this.$el).hide();
-			this.graph = new BubbleCluster({el: '#graph', dimensions: ["m7","idade", "m3","cluster"] });
-			this.graph.update(this.data)
 
-		},
+		
 
 		// -------------------------------------------------------------------------------- //
 		// View callbacks ----------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
 
-		buttonClicked: function(ev){}
+		metricChanged: function(ev){
+			var 
+				index = null,
+				$select = $(ev.currentTarget);
+			if($select.hasClass("js-x")){
+				index = 0;
+			}else if($select.hasClass("js-y")){
+				index = 1;
+			}else if($select.hasClass("js-z")){
+				index = 2;
+			}
+			this.metrics[index] = $select.val();
+			this.graph.changeDimensions(this.metrics);
+		},
 
 		// -------------------------------------------------------------------------------- //
 		// Other callbacks ---------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
+		
+		metricsReset: function(){
+			var
+				self = this;
+			d3.tsv(app.config.serverUrl + "/clusterization/" + self.model.idd + "/get",function(error, data){
+				self.data = data;
+				self.graph = new BubbleCluster({el: '#graph-'+self.hash, dimensions: self.initialMetrics() });
+				self.graph.update(self.data);
+			});
+		},
 
 		// -------------------------------------------------------------------------------- //
 		// Internal methods --------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
 
+		initialMetrics: function(){
+			var 		
+				result = [],		
+				metrics = this.model.get("file").get("metrics");				
+			for(var i = 0; i < 3; i++){
+				result.push(metrics.models[i].get("name"));
+			}
+			result.push("cluster");
+			
+			for(var i = 0; i < metrics.length; i++){
+				this.appendMetric(metrics.models[i],i);
+			}
+			this.setSelected(result);
+			this.metrics = result;
+			return result;
+		},
+
+		appendMetric: function(metric,index){
+			this.$dim.append('<option class="js-new-option"></option>');
+			var $opt = $(".js-new-option", this.$el);
+			$opt.val(metric.get("name"));
+			$opt.html(metric.get("name"));
+			$opt.data("model", metric);
+			$opt.removeClass('js-new-option');
+		},
+		setSelected: function(arr){
+			var
+				$x = $(".js-x", this.$el),
+				$y = $(".js-y", this.$el),
+				$z = $(".js-z", this.$el);
+			$('option[value="'+arr[0]+'"]', $x).attr("selected", "selected");
+			$('option[value="'+arr[1]+'"]', $y).attr("selected", "selected");
+			$('option[value="'+arr[2]+'"]', $z).attr("selected", "selected");
+
+
+		}
 	});
 })(jQuery);

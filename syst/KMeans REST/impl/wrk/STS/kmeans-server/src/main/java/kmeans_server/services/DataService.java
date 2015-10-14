@@ -140,7 +140,7 @@ public class DataService {
 		Double last = .0;
 		Double gain = threshold + 1;
 		Dataset[] clusters = null;
-		int clusterCount = config.getInital();
+		int clusterCount = config.getInitial();
 
 		try {
 			File io = new File(prepareFileForJavaml(config));
@@ -193,8 +193,8 @@ public class DataService {
 				}
 				
 				rowId++;
-			}			
-			writer.write("]");
+			}
+			
 			writer.close();
 			config.setStatus(ClusterizationStatus.READY);
 			clusterizations.save(config);

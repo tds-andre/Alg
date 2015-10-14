@@ -27,7 +27,9 @@ var app = app || {};
  		persist: function(model,args){
 
  			args = args ? args : {};
- 			if(!app.isDefined(model.validate(model.attributes, args))){
+ 			var
+ 				invalidation = model.validate(model.attributes, args);
+ 			if(!app.isDefined(invalidation)){
 	 			$.ajax({
 	 				url: this.url(), 
 	 				type: "POST", 

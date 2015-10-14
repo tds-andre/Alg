@@ -5,7 +5,10 @@ function BubbleCluster(args){
 			width: 900,
 			height: 400,
 			el: 'body',
-			
+			title: function(d, i){
+                return (self.options.key? self.options.key(d,i) : i) + " ("+d[self.keys[0]]+", "+d[self.keys[1]]+", "+d[self.keys[2]]+")";
+                
+            },
 			cluster: function(datum,i){return datum[datum.length-1]},
 			duration: 500
 		}	
@@ -93,7 +96,7 @@ function BubbleCluster(args){
                 .attr("r", function(el){return self.scale.radius(el[self.keys[2]])});
         entered
             .append("svg:title")
-                .text(function(d) { return  self.options.key(d) + " ("+d[self.keys[0]]+","+d[self.keys[1]]+","+d[self.keys[2]]+")"; });
+                .text(function(d,i) { return  self.options.title(d,i) });
        	
        	//exit
        	var exited = circle.exit();
@@ -113,7 +116,7 @@ function BubbleCluster(args){
 
 		self.scale.radius = d3.scale.linear()
 		    .domain([d3.min(self.data, function(el){return el[self.keys[2]]}), d3.max(self.data, function(el){return el[self.keys[2]]})])
-		    .range([10, 40]);
+		    .range([5, 16]);
 		self.scale.x = d3.scale.linear()
 		    .domain([d3.min(self.data, function(el){return el[self.keys[0]]}), d3.max(self.data, function(el){return el[self.keys[0]]})])
 		    .range([50, self.options.width - 50]);

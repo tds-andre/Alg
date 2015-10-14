@@ -33,7 +33,7 @@ public class Clusterization {
 	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = SelectedMetric.class, mappedBy = "clusterization")
 	private List<SelectedMetric> selection;
 
-	private int inital = 5;
+	private int initial = 5;
 
 	private double quality = 0.1;
 
@@ -58,12 +58,14 @@ public class Clusterization {
 		this.status = status;
 	}
 
-	public int getInital() {
-		return inital;
+	
+
+	public int getInitial() {
+		return initial;
 	}
 
-	public void setInital(int inital) {
-		this.inital = inital;
+	public void setInitial(int initial) {
+		this.initial = initial;
 	}
 
 	public double getQuality() {

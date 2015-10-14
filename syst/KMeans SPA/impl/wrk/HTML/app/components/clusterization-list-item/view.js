@@ -11,7 +11,8 @@ var app = app || {};
 			'click  .js-detail'  : 'detailClicked',
 			'click  .js-edit'  : 'editClicked',
 			'click  .js-delete'  : 'deleteClicked',
-			'click  .js-link'    : 'linkClicked'
+			'click  .js-link'    : 'linkClicked',
+			'click  .js-play'    : 'playClicked'
 		},		
 		
 		options: {
@@ -26,12 +27,15 @@ var app = app || {};
 
 		initialize: function(){
 			this.options = {};
+			this.ready = this.model.get("status") == 'READY';
 		},		
 
 		render: function () {
 			var
 				json = this.model.toJSON();
-			this.$el.html(this.template(json));			
+			this.$el.html(this.template(json));	
+			this.$play = $(".js-play", this.$el);
+			this.$status = $(".js-status", this.$el);
 			return this;			
 		},
 
@@ -51,7 +55,21 @@ var app = app || {};
 			this.trigger("edit",this);
 		},
 		linkClicked: function(ev){
-			this.trigger("link",this);
+			if(this.ready)
+				this.trigger("link",this);
+		},
+		playClicked: function(ev){
+			var
+				self = this;
+			this.trigger("play",this);
+			this.$play.attr("disabled", "disabled");
+			this.$status.html("RUNNING");
+			app.collections.clusterizations.run(this.model,{success: function(){
+				self.$status.html("READY");
+				self.ready = true;
+			},error: function(){
+				this.$status.html("WITH_ERROR");
+			}});
 		},
 		deleteClicked: function(ev){
 			var
@@ -76,6 +94,9 @@ var app = app || {};
 		// -------------------------------------------------------------------------------- //
 		// Internal methods --------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
-
+		enable: function(){
+			this.ready = true;
+			
+		}
 	});
 })(jQuery);

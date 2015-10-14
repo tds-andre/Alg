@@ -1,11 +1,37 @@
 <script type="text/template" id="graph-template">
-
+    <style>
+        .js-graph:{
+            margin: 50px;
+        }
+    </style>
         <div class="widget">
 
             <div class="widget-header">
-                <i class="widget-icon fa fa-check"></i>
+                <!--<i class="widget-icon fa fa-check"></i>-->
                 <span class="widget-caption js-title"></span>
-                <div class="widget-buttons">
+                <div class="widget-buttons">   
+
+                    <span class="input-icon">
+                        
+                        <select class="form-control input-xs js-dim js-x">
+                        </select>                        
+                    </span>
+                </div>
+                <div class="widget-buttons">                
+                    <span class="input-icon">
+                        
+                        <select class="form-control input-xs js-dim js-y">
+                        </select>                        
+                    </span>
+                </div>
+                <div class="widget-buttons">    
+                    <span class="input-icon">
+                        
+                        <select class="form-control input-xs js-dim js-z">
+                        </select>                        
+                    </span>
+                </div>
+                <div class="widget-buttons">    
                     <a href="#" data-toggle="config">
                         <i class="fa fa-cog"></i>
                     </a>
@@ -20,8 +46,8 @@
                     </a>
                 </div><!--Widget Buttons-->
             </div><!--Widget Header-->
-            <div class="js-body widget-body" style="display: block; height: auto;">
-                
+            <div class="js-main widget-body" style="display: block; height: auto;">
+                <div class="js-graph"></div>
             </div><!--Widget Body-->
         </div>
     

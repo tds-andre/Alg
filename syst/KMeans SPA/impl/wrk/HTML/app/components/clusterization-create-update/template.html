@@ -10,22 +10,39 @@
 
 			<div class="row">
 				<div class="col-sm-6">
-					<div class="form-group simula_validacao">
+					<div class="form-group js-validation-name js-validation has-feedback">
 						<label class="control-label" for="name">Nome da Configuração <sup>*</sup></label>
 						<input type="text" name="name" class="js-name form-control">
 					</div>
 				</div>
 				<div class="col-sm-6 col-md-3">
-					<div class="form-group">
+					<div class="form-group js-validation js-validation-file has-feedback">
 						<label class="control-label" for="dataset">Arquivo associado <sup>*</sup></label>
 						<select name="dataset" class="form-control select js-files">
 							<option selected disabled>Selecione</option>							
-						</select>							
+						</select>
+						<small class="help-block js-validation-message-file js-validation-message" style="display: none;"></small>				
 					</div>
 				</div>							
 			</div>
+			<div class="row">
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group ">
+						<label class="control-label" for="inital"># Centros Iniciais <sup>*</sup></label>
+						<input type="number" name="initial" min="1" step="1" value="<%- defaults.initial %>" class="js-initial form-control">
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-3">
+					<div class="form-group">
+						<label class="control-label" for="quality">Evolução de Qualidade <sup>*</sup></label>
+						<input type="number" min="0.05" max="0.5" step="0.05" value="<%- defaults.quality %>"name="quality" class="js-quality form-control">
+					</div>
+				</div>
+
+            	
+            </div>
 			<div class="row js-metrics-el">
-			
+				
 
             	
             </div>

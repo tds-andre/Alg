@@ -42,7 +42,7 @@ var app = app || {};
 			this.listenTo(this.collection, "reset", this.addMetrics);
 			if(!this.options.fetched){
 				this.collection.reset();
-				this.collection.fetch({reset: true});
+				this.collection.fetch({reset: true, url: this.collection.href});
 			}else
 				this.addMetrics();
 			this.addField();
