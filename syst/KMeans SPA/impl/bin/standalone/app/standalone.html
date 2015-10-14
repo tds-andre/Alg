@@ -1,0 +1,1254 @@
+﻿
+<!DOCTYPE html>
+<!--
+BeyondAdmin - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.3.1
+Version: 1.3
+Purchase: http://wrapbootstrap.com
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+
+<!-- Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>Clusterizador</title>
+
+    <meta name="description" content="Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+
+    <!--Basic Styles-->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="../assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../assets/css/weather-icons.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <!--Beyond styles-->
+    <link id="beyond-link" href="../assets/css/beyond.min.css" rel="stylesheet" type="text/css" />
+    <link href="../assets/css/demo.min.css" rel="stylesheet" />
+    <link href="../assets/css/typicons.min.css" rel="stylesheet" />
+    <link href="../assets/css/animate.min.css" rel="stylesheet" />
+    <link href="../assets/css/skins/mais.css" rel="stylesheet" type="text/css" />
+    
+    <!--Page Related styles-->
+    <link href="../assets/css/dataTables.bootstrap.css" rel="stylesheet" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support -->
+    <script src="../assets/js/skins.min.js"></script>
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-inner">
+            <div class="navbar-container">
+                <!-- Navbar Barnd -->
+                <div class="navbar-header pull-left">
+                    <a href="#" class="navbar-brand">
+                        <small>
+                            <img src="../assets/img/logo.png" alt="" />
+                        </small>
+                    </a>
+                </div>
+                <!-- /Navbar Barnd -->
+                
+                <!-- Sidebar Collapse -->
+                <div class="sidebar-collapse hidden-print" id="sidebar-collapse">
+                    <i class="collapse-icon fa fa-bars"></i>
+                </div>
+                <!-- /Sidebar Collapse -->
+                
+                <!-- Account Area and Settings --->
+                <div class="navbar-header pull-right hidden-print">
+                    <div class="navbar-account">
+                        <ul class="account-area">
+                            
+                            <!-- atalho aplicacoes -->
+                            <li>
+                                <a class=" dropdown-toggle" data-toggle="dropdown" title="Atalho Aplicações" href="#">
+                                    <i class="icon fa fa-desktop"></i>
+                                </a>
+                                <!--aplicacoes Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications atalho_aplicacoes">
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <img src="../assets/img/aplic_icons/aplic_icon_gpd.jpg" />
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">GPD TCIS</span>
+                                                    <span class="description">v 3.7.0</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <img src="../assets/img/aplic_icons/aplic_icon_painel.jpg" />
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Painel TCIS</span>
+                                                    <span class="description">v 3.7.0</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <img src="../assets/img/aplic_icons/aplic_icon_cbi.jpg" />
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Calandra BI TCIS</span>
+                                                    <span class="description">v 1.2</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <img src="../assets/img/aplic_icons/aplic_icon_unimed2.jpg" />
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">GPD Unimed</span>
+                                                    <span class="description">v 3.6.1</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <img src="../assets/img/aplic_icons/aplic_icon_embelleze.jpg" />
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">GPD Embelleze</span>
+                                                    <span class="description">v 3.6.1</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    
+                                    <li class="bg-whitesmoke">
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="text-center">
+                                                <span class="glyphicon glyphicon-cog"></span> <span class="title">Gerenciador de Aplicações</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>                                   
+                                    
+                                    
+
+                                </ul>
+                                <!--/aplicacoes Dropdown-->
+                            </li>
+                            <!-- /atalho aplicacoes -->
+                            
+                            
+                            <li>
+                                <a class=" dropdown-toggle" data-toggle="dropdown" title="Notificações" href="#">
+                                    <i class="icon fa fa-warning warning"></i>
+                                </a>
+                                <!--Notification Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-notifications">
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-check bg-success white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Indexação base de dados Calandra BI TCIS completada com sucesso</span>
+                                                    <span class="description">05/05/2015 - 01:00</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-warning bg-danger white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Erro ao indexar base de dados Calandra BI HCIS</span>
+                                                    <span class="description">03/05/2015 - 15:27</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-warning bg-warning white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Indicador Lorem Ipsum Dolor Sit próximo à data de expiração</span>
+                                                    <span class="description">03/05/2015 - 12:15</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-warning bg-danger white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Atenção: erro inesperado...</span>
+                                                    <span class="description">30/04/2015 - 10:17</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-check bg-success white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Indexação base de dados Calandra BI TCIS completada com sucesso</span>
+                                                    <span class="description">05/05/2015 - 01:00</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-warning bg-danger white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Erro ao indexar base de dados Calandra BI HCIS</span>
+                                                    <span class="description">03/05/2015 - 15:27</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-warning bg-warning white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Indicador Lorem Ipsum Dolor Sit próximo à data de expiração</span>
+                                                    <span class="description">03/05/2015 - 12:15</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <div class="clearfix">
+                                                <div class="notification-icon">
+                                                    <i class="fa fa-warning bg-danger white"></i>
+                                                </div>
+                                                <div class="notification-body">
+                                                    <span class="title">Atenção: erro inesperado...</span>
+                                                    <span class="description">30/04/2015 - 10:17</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="bg-whitesmoke">
+                                        <a href="#" class="no-padding">
+                                            <div class="clearfix">
+                                                <div class="text-center">
+                                                    <span>Ver mais</span>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>                                   
+                                    <li class="dropdown-footer ">
+                                        <span>
+                                            Hoje - 07 de Maio
+                                        </span>
+                                    </li>
+                                </ul>
+                                <!--/Notification Dropdown-->
+                            </li>
+                            
+                            <li>
+                                <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                    <div class="avatar" title="View your public profile">
+                                        <img src="../assets/img/avatars/adam-jansen.jpg">
+                                    </div>
+                                    <section>
+                                        <h2><span class="profile"><span>Administrador</span></span></h2>
+                                    </section>
+                                </a>
+                                <!--Login Area Dropdown-->
+                                <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                    <li class="username"><a>Administrador</a></li>
+                                    <!--Avatar Area-->
+                                    <li>
+                                        <div class="avatar-area">
+                                            <img src="../assets/img/avatars/adam-jansen.jpg" class="avatar">
+                                        </div>
+                                    </li>
+                                    <!--Avatar Area-->
+                                    <li class="edit">
+                                        <a href="usuario_perfil.html" class="pull-right">Perfil</a>
+                                    </li>
+
+                                    <li class="dropdown-footer">
+                                        <a href="login.html">
+                                            Sair
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!--/Login Area Dropdown-->
+                            </li>
+                            <!-- /Account Area -->
+                            <!--Note: notice that setting div must start right after account area list.
+                            no space must be between these elements-->
+                            <!-- Settings -->
+                        </ul><div class="setting">
+                            <a id="btn-setting" title="Setting" href="#">
+                                <i class="icon glyphicon glyphicon-cog"></i>
+                            </a>
+                        </div><div class="setting-container">
+                            <label>
+                                <input type="checkbox" id="checkbox_fixednavbar">
+                                <span class="text">Fixar Topo</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_fixedsidebar">
+                                <span class="text">Fixar Menu Lateral</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_fixedbreadcrumbs">
+                                <span class="text">Fixar BreadCrumbs</span>
+                            </label>
+                            <label>
+                                <input type="checkbox" id="checkbox_fixedheader">
+                                <span class="text">Fixed Título</span>
+                            </label>
+                        </div>
+                        <!-- Settings -->
+                    </div>
+                </div>
+                <!-- /Account Area and Settings -->
+            </div>
+        </div>
+    </div>
+    <!-- /Navbar -->
+    <!-- Main Container -->
+    <div class="main-container container-fluid">
+        <!-- Page Container -->
+        <div class="page-container">
+
+            <!-- Page Sidebar -->
+            <div class="page-sidebar hidden-print" id="sidebar">
+                <!-- Page Sidebar Header-->
+                <div class="sidebar-header-wrapper busca">
+                    <input type="text" class="searchinput" />
+                    <i class="searchicon fa fa-search"></i>
+                    <div class="searchhelper">Search Reports, Charts, Emails or Notifications</div>
+                </div>
+                <!-- /Page Sidebar Header -->
+                <!-- Sidebar Menu -->
+                <ul class="nav sidebar-menu">
+                    <!--Principal-->
+                    <li class="active" id="transaction-report-button">
+                        <a href="#" >
+                            <i class="menu-icon fa fa-magic"></i>
+                            <span class="menu-text"> Principal </span>
+                        </a>
+                    </li>
+                    
+                    <!-- transacoes -->
+                    <li>
+                        <a href="#" class="menu-dropdown">
+                            <i class="menu-icon fa fa-upload"></i>
+                            <span class="menu-text"> Uploads </span>
+                            <i class="menu-expand"></i>
+                        </a>
+                        
+                        <ul class="submenu">
+                            <li id="file-list">
+                                <a href="#">
+                                    <span class="menu-text">Consultar</span>
+                                </a>
+                            </li>
+                            <li id="file-new">
+                                <a href="#">
+                                    <span class="menu-text">Novo</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    
+                    <!-- origens -->
+                    <li>
+                        <a href="#" class="menu-dropdown">
+                            <i class="menu-icon fa fa-cogs"></i>
+                            <span class="menu-text"> Clusterizações </span>
+                            <i class="menu-expand"></i>
+                        </a>
+                        
+                        <ul class="submenu">
+                            <li id="clusterization-list">
+                                <a href="#">
+                                    <span class="menu-text" >Consultar</span>
+                                </a>
+                            </li>
+                            <li id="clusterization-new">
+                                <a href="#">
+                                    <span class="menu-text" >Nova</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>                   
+                    
+                   
+                    
+                </ul>
+                <!-- /Sidebar Menu -->
+            </div>
+            <!-- /Page Sidebar -->
+            
+
+            <!-- Page Content -->
+            <div class="page-content">
+                <!-- Page Breadcrumb -->
+                <div class="page-breadcrumbs">
+                    <ul class="breadcrumb" id="main-breadcrumb">
+                        <li>
+                            <i class="fa fa-home"></i>
+                            <a href="index.php">Clusterizador</a>
+                        </li>
+                        <li class="active">Principal</li>
+                    </ul>
+                </div>
+                <!-- /Page Breadcrumb -->
+                <!-- Page Header -->
+                <div class="page-header position-relative hidden-print">
+                    <div class="header-title">
+                        <h1 id="main-content-title">
+                            Principal
+                        </h1>
+                    </div>
+                    
+                    <!-- Header Buttons -->
+                    <div class="header-buttons">
+                        <a class="sidebar-toggler" href="#">
+                            <i class="fa fa-arrows-h"></i>
+                        </a>
+                        <a class="refresh" id="refresh-toggler" href="">
+                            <i class="glyphicon glyphicon-refresh"></i>
+                        </a>
+                        <a class="fullscreen" id="fullscreen-toggler" href="#">
+                            <i class="glyphicon glyphicon-fullscreen"></i>
+                        </a>
+                    </div>
+                    <!-- Header Buttons End -->
+                    
+                </div>
+                <!-- /Page Header -->
+                <!-- Page Body -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="main-content-placeholder">
+                            
+                       
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- /Page Body -->
+            </div>
+            <!-- /Page Content -->
+
+        </div>
+        <!-- /Page Container -->
+
+    </div>
+    <!-- Main Container -->
+    
+    
+    
+    <!--Modal Detalhes-->
+    <div id="modal-detalhes" class="modal fade" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="mySmallModalLabel">Transação de Dados - Detalhes</h4>
+                </div>
+
+                <div class="modal-body">
+                    <!-- secao -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h6><strong>Título</strong></h6>
+                            <h5>Transação Dados 01</h5>
+                        </div>
+                    </div>
+                    <!-- /secao -->
+                    
+                    <!-- secao -->
+                    <h6><strong>Origem</strong></h6>
+                    <hr class="no-margin"/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6>Nome</h6>
+                            <h5>Origem 01</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6>Conector</h6>
+                            <h5>CBI</h5>
+                        </div>                          
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6>URL</h6>
+                            <h5>localhost</h5>
+                        </div>
+                        <div class="col-sm-6" style="display: none;">
+                            <h6>Porta</h6>
+                            <h5>8080</h5>
+                        </div>                  
+                    </div>
+                    <!-- /secao -->
+                    
+                    <!-- secao -->
+                    <h6><strong>Destino</strong></h6>
+                    <hr class="no-margin"/>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6>Nome</h6>
+                            <h5>Destino 01</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6>Conector</h6>
+                            <h5>MySQL</h5>
+                        </div>                          
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6>URL</h6>
+                            <h5>www.tcis.calndra.br/biserver-web/painel</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6>Porta</h6>
+                            <h5>8080</h5>
+                        </div>                          
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h6>Usuário</h6>
+                            <h5>root</h5>
+                        </div>
+                        <div class="col-sm-6" style="display: none;">
+                            <h6>Senha</h6>
+                            <h5>************</h5>
+                        </div>                          
+                    </div>                  
+                    <!-- /secao -->
+                    
+                    <!-- secao -->
+                    <h6><strong>Mapeamento</strong></h6>
+                    <hr class="no-margin"/>
+                    
+                    <h5>Mapeamento 01</h5>
+                    <table class="table table-hover table-striped table-bordered table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="min-width">Chave<br/>Única</th>
+                                <th>Nome</th>                               
+                                <th class="text-center">Tipo</th>
+                                <th>Variável CBI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Data de Admissão
+                                </td>
+                                <td class="text-center">
+                                    data
+                                </td>
+                                <td>
+                                    datadeadmissao_tdt
+                                </td>                               
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Funcionário
+                                </td>
+                                <td class="text-center">
+                                    texto
+                                </td>
+                                <td>
+                                    funcionario_s
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Salário
+                                </td>
+                                <td class="text-center">
+                                    número
+                                </td>
+                                <td>
+                                    salario_b
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Data de Admissão
+                                </td>
+                                <td class="text-center">
+                                    data
+                                </td>
+                                <td>
+                                    datadeadmissao_tdt
+                                </td>                               
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Funcionário
+                                </td>
+                                <td class="text-center">
+                                    texto
+                                </td>
+                                <td>
+                                    funcionario_s
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Salário
+                                </td>
+                                <td class="text-center">
+                                    número
+                                </td>
+                                <td>
+                                    salario_b
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Data de Admissão
+                                </td>
+                                <td class="text-center">
+                                    data
+                                </td>
+                                <td>
+                                    datadeadmissao_tdt
+                                </td>                               
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Funcionário
+                                </td>
+                                <td class="text-center">
+                                    texto
+                                </td>
+                                <td>
+                                    funcionario_s
+                                </td>   
+                            </tr>
+                            <tr>
+                                <td class="text-center">
+                                    <i class="fa fa-check silver"></i>
+                                </td>
+                                <td>
+                                    Salário
+                                </td>
+                                <td class="text-center">
+                                    número
+                                </td>
+                                <td>
+                                    salario_b
+                                </td>   
+                            </tr>
+                        </tbody>
+                    </table>
+                
+                    <!-- /secao -->                 
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>                  
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Modal Detalhes-->
+    
+    
+    <!--Modal Seleciona arquivo-->
+    <div id="modal-seleciona_arquivo" class="modal fade" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="mySmallModalLabel">Executar Transação Dados 01</h4>
+                </div>
+
+                <div class="modal-body">
+                
+                    <!-- validacao -->
+                    <div role="alert" class="alert alert-warning alert-dismissible" style="display: none;">
+                        <h5>A seleção do arquivo é obrigatória.</h5>
+                        <h5>O tipo de arquivo selecionado é incorreto.</h5>
+                    </div>
+                    <!-- /validacao -->
+                
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p>Você deve selecionar um arquivo do tipo "CSV" para executar essa transação:</p>
+                            <p><input type="file"/></p>
+                        </div>
+                    </div>
+                
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>                    
+                    <a href="#" class="btn btn-primary" onclick="$(this).parents('.modal-content').find('.modal-body .alert').toggle();">Prosseguir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Modal Seleciona arquivo--> 
+    
+    
+
+    <!--Basic Scripts-->
+    <script src="../assets/js/jquery-2.0.3.min.js"></script>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <script src="../assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="../assets/js/beyond.js"></script>
+
+
+    <!--Page Related Scripts-->
+    <script src="../assets/js/bootbox/bootbox.js"></script>
+    <script src="../assets/js/fuelux/wizard/wizard-custom.js"></script>
+    <!--Templates-->
+<script type="text/template" id="base-template">
+
+</script><script type="text/template" id="base-list-template">
+
+</script><script type="text/template" id="base-list-item-template">
+
+</script><script type="text/template" id="base-details-template">
+
+</script><script type="text/template" id="base-create-update-template">
+
+</script><script type="text/template" id="metric-list-template">
+	
+		<div class="form-group js-validation js-validation-metrics has-feedback">
+			<label class="control-label" for="list">Métricas à serem clusterizadas <sup>*</sup></label>
+			<div name="list"class="dd dd-draghandle bordered">
+		        <ol class="dd-list js-list">
+		            
+		        </ol>
+	    	</div>
+	    	<small class="help-block js-validation-message-metrics js-validation-message" style="display: none;"></small>
+	        <datalist class="js-data">
+	        </datalist>
+       	</div>
+
+	
+</script><script type="text/template" id="metric-list-item-template">
+	   
+        <div class="dd-handle dd2-handle bg-info js-add">
+            <i class="js-icon normal-icon fa fa-plus"></i>
+            <i class="drag-icon fa fa-arrows-alt "></i>
+        </div>
+        <div class="dd2-content js-bg" style="padding-top: 0;padding-bottom: 0";>
+        	<div class="form-group" style="margin: 0;">
+                <span class="input-icon icon-right">
+                    <input type="text" class="form-control js-input" style="background: transparent;border: none;color:inherit">
+                    <span class="js-lock"></span>
+                    <i class="fa fa-times red js-clear" style="display:none;cursor:pointer"></i>
+                <span>
+            </div>
+                    	
+        </div>
+  
+</script><script type="text/template" id="clusterization-list-template">
+<div class="widget radius-bordered">
+	<div class="widget-header bg-seashell">
+		<span class="widget-caption silver"> Configurações Definidaas </span>
+		<div class="widget-buttons buttons-bordered hidden-print">
+			<span><a class="btn btn-default btn-sm js-new" href="#"> Novo Configuração </a></span>
+		</div>									
+		<div class="widget-buttons buttons-bordered hidden-print">									
+			<a data-toggle="maximize" href="#">
+				<i class="fa fa-expand silver"></i>
+			</a>
+			<a data-toggle="collapse" href="#">
+				<i class="fa fa-minus silver"></i>
+			</a>
+		</div>									
+	</div>
+	<div class="widget-body">
+		<div class="table-scrollable">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th scope="col" class="sorting_asc">
+							Nome
+						</th>
+						<th scope="col" class="sorting_asc">
+							Arquivo
+						</th>
+						<th scope="col" class="sorting_asc">
+							Status
+						</th>												
+						
+						<th class="hidden-print min-width"></th>
+					</tr>
+				</thead>
+				<tbody class="js-list">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</script><script type="text/template" id="clusterization-list-item-template">
+	<td class="js-name">
+		<a class="js-link" href="#" title="Vizualizar">
+			<%- name %>
+		</a>
+	</td>
+	<td>
+		
+	</td>	
+	<td class="js-status">
+		<%- status %>
+	</td>		
+	<td class="hidden-print">
+		<a href="#" class="btn bg-green btn-xs  icon-only white js-play" href="#" title="Executar" 
+		<% if(status=="RUNNING" || status=="READY") {%>
+			disabled="disabled"
+		<% } %>
+		>
+			<i class="fa fa-play"></i>
+		</a>
+		<a href="#" class="btn bg-silver btn-xs icon-only white js-detail" href="#" title="Detalhes">
+			<i class="fa fa-search"></i>
+		</a>
+		<!--<a href="#" class="btn btn-info btn-xs icon-only white js-edit" title="Editar">
+			<i class="fa fa-pencil"></i>
+		</a>-->
+		<a href="#" class="btn btn-danger btn-xs icon-only white bootbox-confirm js-delete" title="Excluir">
+			<i class="fa fa-times"></i>
+		</a>
+	</td>
+</script><script type="text/template" id="clusterization-details-template">
+clusterization-details-template
+</script><script type="text/template" id="clusterization-create-update-template">
+
+<div class="widget no-header radius-bordered">
+	<div class="widget-body">
+		<div class="well well-sm attached top text-right js-header">
+			<a class="btn btn-default js-cancel">Cancelar</a>									
+			<button class="btn btn-primary js-save" type="button">Salvar</button>
+		</div>
+		<div class="well attached js-main">
+			<div class="row">
+				<div class="col-sm-12 col-md-8">
+					<div class="row">
+						<div class="col-sm-12 col-md-12 col-lg-3">
+							<div class="form-group js-validation-name js-validation has-feedback">
+								<label class="control-label" for="name">Nome<sup>*</sup></label>
+								<input type="text" name="name" class="js-name form-control">
+							</div>
+						</div>
+					
+						<div class="col-sm-12 col-md-4 col-lg-3">
+							<div class="form-group ">
+								<label class="control-label" for="inital">Centros</label>
+								<input type="number" name="initial" min="1" step="1" value="<%- defaults.initial %>" class="js-initial form-control">
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-4 col-lg-3">
+							<div class="form-group">
+								<label class="control-label" for="quality">Qualidade</label>
+								<input type="number" min="0.05" max="1.0" step="0.05" value="<%- defaults.quality %>"name="quality" class="js-quality form-control">
+							</div>
+						</div>
+						<div class="col-sm-12 col-md-4 col-lg-3">
+							<div class="form-group">
+								<label>
+									<p>Normalizar dados?</p>							
+		                            <input class="checkbox-slider toggle yesno js-normalize" type="checkbox">
+		                            <span class="text"></span>
+		                        </label>
+		                    </div>
+		                </div>		            	
+		            </div>
+		        </div>
+		        <div class="col-sm-12 col-md-4">
+		        	<div class="row">
+		            	<div class="col-sm-12">
+							<div class="form-group js-validation js-validation-file has-feedback">
+								<label class="control-label" for="dataset">Arquivo associado <sup>*</sup></label>
+								<select name="dataset" class="form-control select js-files">
+									<option selected disabled>Selecione</option>							
+								</select>
+								<small class="help-block js-validation-message-file js-validation-message" style="display: none;"></small>				
+							</div>
+						</div>		
+					</div>			
+					<div class="row js-metrics-container">
+						<div class="col-sm-12 js-metrics-el">
+						</div>	            	
+		            </div>
+		        </div>
+			</div>
+		</div>
+		<div class="well well-sm attached bottom text-right js-header">
+			<a class="btn btn-default js-cancel">Cancelar</a>									
+			<button class="btn btn-primary js-save" type="button">Salvar</button>
+		</div>	
+	<div>
+</div>
+
+
+</script><script type="text/template" id="file-list-template">
+<div class="widget radius-bordered">
+	<div class="widget-header bg-seashell">
+		<span class="widget-caption silver"> Arquivos </span>
+		<div class="widget-buttons buttons-bordered hidden-print">
+			<span><a class="btn btn-default btn-sm js-new" href="#"> Novo Upload </a></span>
+		</div>									
+		<div class="widget-buttons buttons-bordered hidden-print">									
+			<a data-toggle="maximize" href="#">
+				<i class="fa fa-expand silver"></i>
+			</a>
+			<a data-toggle="collapse" href="#">
+				<i class="fa fa-minus silver"></i>
+			</a>
+		</div>									
+	</div>
+	<div class="widget-body">
+		<div class="table-scrollable">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th scope="col" class="sorting_asc">
+							Nome
+						</th>													
+						
+						<th class="hidden-print min-width"></th>
+					</tr>
+				</thead>
+				<tbody class="js-list">
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+</script><script type="text/template" id="file-list-item-template">
+	<td>
+		<%- name %>
+	</td>	
+	<td class="hidden-print">
+		<a href="#" class="btn bg-silver btn-xs icon-only white js-detail" href="#" title="Detalhes">
+			<i class="fa fa-search"></i>
+		</a>
+		<!--<a href="#" class="btn btn-info btn-xs icon-only white js-edit" title="Editar">
+			<i class="fa fa-pencil"></i>
+		</a>-->
+		<a href="#" class="btn btn-danger btn-xs icon-only white bootbox-confirm js-delete" title="Excluir">
+			<i class="fa fa-times"></i>
+		</a>
+	</td>
+</script><script type="text/template" id="file-details-template">
+file-details-template
+</script>
+
+<script type="text/template" id="file-create-update-template">
+
+
+	<div class="js-upload-el js-section">
+		
+		
+	</div>
+	<div class="js-processing js-section" style="display:none">
+		<div class="widget no-header radius-bordered">
+			<div class="widget-body">	
+				<div class="well attached js-main">
+					<div class="row js-image">
+						<div class="col-sm-offset-1 col-sm-10 col-md-6 col-md-offset-3">
+							<img src="resources/spinner.gif"/>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-offset-1 col-sm-10 col-md-6 col-md-offset-3">
+							<h4 class="js-message">Processando arquivo.</h4>
+							<h6><span class="js-message-ad-1 js-message-ad"> Ficará disponível na </span><strong><a class="js-message-link" href="#">lista</a></strong><span class="js-message-ad-2 js-message-ad"> em breve<span></h4>						
+						</div>
+					</div>
+				</div>				
+			</div>
+		</div>		
+	</div>
+
+</script><script type="text/template" id="file-upload-template">
+<div class="widget no-header radius-bordered">
+	<div class="widget-body">	
+		<div class="well attached js-main">
+			<div class="row">
+					<div class="col-sm-offset-1 col-sm-10 col-md-6 col-md-offset-3">
+						<form>
+							<div class="form-group js-file-container">
+	                            <span class="input-icon icon-right inverted">
+	                                <input type="text" class="form-control input-xl js-file-name" placeholder="Escolha o arquivo (CSV ou Excel)">
+	                                <i class="fa fa-folder-open bg-blue js-browse"></i>
+	                                <input type="file" class="js-file-input" multiple="true" name="file"  style="position: absolute;top: -1000px;">
+	                            </span>
+
+	                		</div>
+                		</form>
+                		
+                		<div class="progress progress-xlg">
+                    		<div class="progress-bar progress-bar-info js-progress" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                        		<span class="js-progress-message">
+                            		
+                        		</span>
+                    		</div>
+                        </div>			   				
+						
+						
+
+					</div>
+				</div>				
+			</div>			
+		</div>				
+	</div>
+</script><script type="text/template" id="graph-template">
+    <style>
+        .js-graph:{
+            margin: 50px;
+        }
+    </style>
+        <div class="widget">
+
+            <div class="widget-header">
+                <!--<i class="widget-icon fa fa-check"></i>-->
+                <span class="widget-caption js-title"></span>
+                <div class="widget-buttons">   
+
+                    <span class="input-icon">
+                        
+                        <select class="form-control input-xs js-dim js-x">
+                        </select>                        
+                    </span>
+                </div>
+                <div class="widget-buttons">                
+                    <span class="input-icon">
+                        
+                        <select class="form-control input-xs js-dim js-y">
+                        </select>                        
+                    </span>
+                </div>
+                <div class="widget-buttons">    
+                    <span class="input-icon">
+                        
+                        <select class="form-control input-xs js-dim js-z">
+                        </select>                        
+                    </span>
+                </div>
+                <div class="widget-buttons buttons-bordered hidden-print js-export">    
+                    <span><a class="btn btn-default btn-sm">Exportar</a></span>
+                </div>
+                <div class="widget-buttons buttons-bordered">    
+                    <a href="#" data-toggle="config">
+                        <i class="fa fa-cog"></i>
+                    </a>
+                    <a href="#" data-toggle="maximize">
+                        <i class="fa fa-expand"></i>
+                    </a>
+                    <a href="#" data-toggle="collapse">
+                        <i class="fa fa-minus"></i>
+                    </a>
+                    <a href="#" data-toggle="dispose">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div><!--Widget Buttons-->
+            </div><!--Widget Header-->
+            <div class="js-main widget-body" style="display: block; height: auto;">
+                <div class="js-graph"></div>
+            </div><!--Widget Body-->
+        </div>
+    
+
+</script>
+
+
+
+
+
+
+<div id="validation-modal" class="modal modal-message fade" style="display: none;" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fa"></i>
+            </div>
+            <div class="modal-title"></div><!--fa-warning-->
+
+            <div class="modal-body">								
+			</div>
+			
+            <div class="modal-footer">
+                <button type="button" class="btn" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="generic-modal" class="modal fade" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+
+                <div class="modal-body">
+                  
+                    
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>                  
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<!--Libraries-->
+
+<script src="vendor/underscore/underscore-min.js" type="text/javascript"></script>
+<script src="vendor/backbone/backbone.js" type="text/javascript"></script>
+<script src="vendor/jfeldstein/jQuery.AjaxFileUpload.js/jQuery.AjaxFileUpload.js" type="text/javascript"></script>
+<script type="text/javascript" src="libs/spring-model.js"></script>
+<script type="text/javascript" src="libs/spring-collection.js"></script>
+<script type="text/javascript" src="vendor/d3/d3.js"></script>
+<script type="text/javascript" src="vendor/d3/d3-popover.js"></script>
+<script type="text/javascript" src="libs/bubble-cluster.d3.js"></script>
+<link href="libs/bubble-cluster.d3.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="libs/tds-spinner.js"></script>
+<!--Groundwork-->
+<script type="text/javascript" src="config.js"></script>
+<script type="text/javascript" src="models.js"></script>
+
+<!--Views-->
+<script type="text/javascript" src="components/base/view.js"></script>
+<script type="text/javascript" src="components/base-list/view.js"></script>
+<script type="text/javascript" src="components/base-list-item/view.js"></script>
+<script type="text/javascript" src="components/base-details/view.js"></script>
+<script type="text/javascript" src="components/base-create-update/view.js"></script>
+<script type="text/javascript" src="components/file-upload/view.js"></script>
+<script type="text/javascript" src="components/metric-list/view.js"></script>
+<script type="text/javascript" src="components/metric-list-item/view.js"></script>
+<script type="text/javascript" src="components/clusterization-list/view.js"></script>
+<script type="text/javascript" src="components/clusterization-list-item/view.js"></script>
+<script type="text/javascript" src="components/clusterization-details/view.js"></script>
+<script type="text/javascript" src="components/clusterization-create-update/view.js"></script>
+<script type="text/javascript" src="components/file-list/view.js"></script>
+<script type="text/javascript" src="components/file-list-item/view.js"></script>
+<script type="text/javascript" src="components/file-details/view.js"></script>
+<script type="text/javascript" src="components/file-create-update/view.js"></script>
+<script type="text/javascript" src="components/graph/view.js"></script>
+
+
+
+<!--App & Initialization-->
+<script type="text/javascript" src="routes.js"></script>
+<script type="text/javascript" src="app.js"></script>
+
+
+
+
+
+    <script>
+        // If you want to draw your charts with Theme colors you must run initiating charts after that current skin is loaded
+        $(window).bind("load", function () {
+
+            /*Sets Themed Colors Based on Themes*/
+            themeprimary = getThemeColorFromCss('themeprimary');
+            themesecondary = getThemeColorFromCss('themesecondary');
+            themethirdcolor = getThemeColorFromCss('themethirdcolor');
+            themefourthcolor = getThemeColorFromCss('themefourthcolor');
+            themefifthcolor = getThemeColorFromCss('themefifthcolor');
+
+            //-------------------------bootbox-confirm------------------//
+            $(".cancelar-confirm").on('click', function () {
+                bootbox.confirm("Tem certeza que deseja cancelar a execução de 'Transação Dados 06' ?", function (result) {
+                    if (result) {
+                        
+                    }
+                });
+            });
+
+        });
+
+    </script>
+    
+
+
+</body>
+<!--  /Body -->
+</html>

@@ -1,0 +1,31 @@
+<script type="text/template" id="clusterization-list-item-template">
+	<td class="js-name">
+		<a class="js-link" href="#" title="Vizualizar">
+			<%- name %>
+		</a>
+	</td>
+	<td>
+		
+	</td>	
+	<td class="js-status">
+		<%- status %>
+	</td>		
+	<td class="hidden-print">
+		<a href="#" class="btn bg-green btn-xs  icon-only white js-play" href="#" title="Executar" 
+		<% if(status=="RUNNING" || status=="READY") {%>
+			disabled="disabled"
+		<% } %>
+		>
+			<i class="fa fa-play"></i>
+		</a>
+		<a href="#" class="btn bg-silver btn-xs icon-only white js-detail" href="#" title="Detalhes">
+			<i class="fa fa-search"></i>
+		</a>
+		<!--<a href="#" class="btn btn-info btn-xs icon-only white js-edit" title="Editar">
+			<i class="fa fa-pencil"></i>
+		</a>-->
+		<a href="#" class="btn btn-danger btn-xs icon-only white bootbox-confirm js-delete" title="Excluir">
+			<i class="fa fa-times"></i>
+		</a>
+	</td>
+</script>
