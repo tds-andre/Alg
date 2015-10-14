@@ -1,5 +1,6 @@
 \.metadata
 \.settings
+\node_modules
 
 # Windows image file caches
 Thumbs.db
@@ -46,3 +47,4 @@ Temporary Items
 .apdisk
 /syst/KMeans REST/impl/wrk/STS/RemoteSystemsTempFiles
 uploads
+/syst/KMeans SPA/impl/bin/standalone/standalone
