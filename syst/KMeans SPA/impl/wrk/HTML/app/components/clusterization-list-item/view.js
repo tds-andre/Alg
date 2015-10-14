@@ -68,7 +68,7 @@ var app = app || {};
 				self.$status.html("READY");
 				self.ready = true;
 			},error: function(){
-				this.$status.html("WITH_ERROR");
+				this.$status.html("ERROR");
 			}});
 		},
 		deleteClicked: function(ev){

@@ -28,6 +28,7 @@ import net.sf.javaml.clustering.evaluation.ClusterEvaluation;
 import net.sf.javaml.clustering.evaluation.SumOfSquaredErrors;
 import net.sf.javaml.core.Dataset;
 import net.sf.javaml.core.Instance;
+import net.sf.javaml.filter.normalize.NormalizeMidrange;
 import net.sf.javaml.tools.data.FileHandler;
 
 import org.apache.commons.csv.CSVRecord;
@@ -129,11 +130,18 @@ public class DataService {
 	}
 
 	public void executeClusterization(long configId) throws Exception {
+		//Instacia objeto com as configurações da clusterização
 		Clusterization config = clusterizations.findOne(configId);
-		//if(!config.getStatus().equals(ClusterizationStatus.CREATED))
-		//	throw new FlowException("Não é possível rodar o algorítimo no mommento.");
+		
+		//Verifica se a clusterização já está sendo executadas 
+		if(config.getStatus().equals(ClusterizationStatus.RUNNING))
+			return;
+		
+		//Define o status da clusterização para em execução
 		config.setStatus(ClusterizationStatus.RUNNING);
 		clusterizations.save(config);
+		
+		//Inicia variaveis no escopo da função
 		kmeans_server.domain.File file = config.getFile();
 		Double threshold = config.getQuality();
 		Double score = .0;
@@ -142,33 +150,53 @@ public class DataService {
 		Dataset[] clusters = null;
 		int clusterCount = config.getInitial();
 
+		//Algorítmo de clusterização
 		try {
+			
+			//Gera outro csv  apropriado para o Javaml
 			File io = new File(prepareFileForJavaml(config));
+			
+			//Carrega o novo csv
 			Dataset data = FileHandler.loadDataset(io, 0, ";");
+			
+			//Normaliza de acordo com a configuração
+			if(config.getNormalize()){
+				NormalizeMidrange nmr=new NormalizeMidrange(0.5,1);				
+				nmr.build(data);
+				nmr.filter(data);
+			}
 
+			//Itera até a qualidade configurada
 			while (gain > threshold) {
+				//Clusteriza
 				Clusterer km = new KMeans(clusterCount);
 				clusters = km.cluster(data);
+				
+				//Avalia
 				ClusterEvaluation sse = new SumOfSquaredErrors();
 				score = sse.score(clusters);
 				if(last>0)
 					gain = 1 - score / last;
+				
+				//Prepara para próxima iteração
 				last = score;
 				clusterCount++;
 			}
 
-			
+			//Cria tsv para ser recebido pelo javascript
 			File tsv = new File(file.getLocation() + config.getId() + ".tsv");
 			BufferedWriter writer = new BufferedWriter(new FileWriter(tsv));
 			
+			
+			//Salva header no tsv;
 			CsvDataset csv = new CsvDataset(file.getLocation());			
 			Iterator<CSVRecord> rows = csv.open();
 			for(String header:csv.getHeaders())
 				writer.write(header + "\t");
 			writer.write("cluster\n");
 			
-			Integer rowId = 0;
-			
+			//Copia linhas para o tsv adicionando o indice do cluster			
+			Integer rowId = 0;			
 			while(rows.hasNext()){
 				CSVRecord row = rows.next();
 				Instance current = null;
@@ -190,16 +218,19 @@ public class DataService {
 						writer.write(row.get(i) + "\t");
 					}
 					writer.write(clusterIndex.toString()+"\n");
-				}
-				
+				}				
 				rowId++;
-			}
-			
+			}			
 			writer.close();
+			
+			//Finaliza
 			config.setStatus(ClusterizationStatus.READY);
 			clusterizations.save(config);
-			
+		
+		//Trata exceções
 		} catch (Exception e) {
+			config.setStatus(ClusterizationStatus.ERROR);
+			clusterizations.save(config);
 			throw e;
 		}
 	}
@@ -230,5 +261,10 @@ public class DataService {
 	public File getFile(long clusterizationId) {
 		Clusterization config = clusterizations.findOne(clusterizationId);
 		return new File(config.getFile().getLocation() + config.getId() + ".tsv");
+	}
+
+	public String getFilename(long clusterizationId) {
+		Clusterization config = clusterizations.findOne(clusterizationId);
+		return config.getName() + ".tsv";
 	}
 }

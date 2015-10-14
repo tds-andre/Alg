@@ -29,6 +29,7 @@ var app = app || {};
 			this.metricsView = null;
 			this.model = null;
 			this.isSaving = false;
+			this.clones = {};
 		},		
 
 		render: function () {
@@ -41,6 +42,7 @@ var app = app || {};
 			);
 			json.defaults = defaults;
 			this.$el.html(this.template(json));
+			this.clones.$metrics = $(".js-metrics-el", this.$el).clone();
 			this.listenTo(this.collection, "reset", this.addFiles)
 			if(!this.options.fetched){
 				this.collection.reset();
@@ -49,7 +51,8 @@ var app = app || {};
 				this.addFiles();
 			this.$name = $(".js-name", this.$el);
 			this.$quality = $(".js-quality", this.$el);
-			this.$initial = $(".js-initial", this.$el);		
+			this.$initial = $(".js-initial", this.$el);
+			this.$normalize = $(".js-normalize", this.el);
 			return this;			
 		},
 
@@ -67,6 +70,10 @@ var app = app || {};
 				this.metricsView.remove();
 			this.file = this.collection.models[$(".js-files", this.$el).val()];
 			this.file.nest();
+			if(this.metricsView){
+				this.metricsView.remove();
+				$(".js-metrics-container").append(this.clones.$metrics);
+			}
 			this.metricsView = new app.MetricListView({el: $(".js-metrics-el", this.el)[0], collection: this.file.get("metrics")});
 			this.metricsView.start();
 
@@ -94,6 +101,7 @@ var app = app || {};
 				this.model.set("name", this.$name.val());
 				this.model.set("initial", this.$initial.val());
 				this.model.set("quality", this.$quality.val());
+				this.model.set("normalize", this.$normalize.prop("checked"));
 
 				app.collections.clusterizations.persist(this.model,{success: function(){
 					self.metricsView.values.forEach(function(href,index){

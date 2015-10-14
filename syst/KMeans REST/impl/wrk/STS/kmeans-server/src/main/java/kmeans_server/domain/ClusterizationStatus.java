@@ -1,6 +1,6 @@
 package kmeans_server.domain;
 
 public enum ClusterizationStatus {
-	CREATED, RUNNING, READY
+	CREATED, RUNNING, READY, ERROR
 
 }

@@ -11,7 +11,9 @@ var app = app || {};
 		tagName: "li",
 
 		events: {
-			'keypress  .js-input'  : 'metricWritten',			
+			'keypress  .js-input'  : 'metricWritten',
+			'click .js-add' : 'addClicked',
+			'click .js-clear': 'clearClicked'
 		},		
 		
 		defaults: {
@@ -54,10 +56,17 @@ var app = app || {};
 		// View callbacks ----------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
 
-		metricWritten: function(ev){
+		metricWritten: function(ev){			
 			if(ev.keyCode==13)
 				this.trigger("select", this, this.$input.val())
+		},
+		addClicked: function(ev){
+			this.trigger("select", this, this.$input.val())
+		},
+		clearClicked: function(ev){
+			this.remove();
 		}
+
 
 		// -------------------------------------------------------------------------------- //
 		// Other callbacks ---------------------------------------------------------------- //

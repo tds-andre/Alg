@@ -39,6 +39,8 @@ public class Clusterization {
 
 	@Enumerated(EnumType.STRING)
 	private ClusterizationStatus status = ClusterizationStatus.CREATED;
+	
+	private Boolean normalize = false;
 
 	// Getter & Setters
 	// ------------------------------------------------------------------------//
@@ -48,6 +50,14 @@ public class Clusterization {
 
 	public List<SelectedMetric> getSelection() {
 		return selection;
+	}
+
+	public Boolean getNormalize() {
+		return normalize;
+	}
+
+	public void setNormalize(Boolean normalize) {
+		this.normalize = normalize;
 	}
 
 	public ClusterizationStatus getStatus() {

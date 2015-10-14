@@ -94,9 +94,25 @@ public class AppController  extends WebMvcConfigurerAdapter {
 	}
 	
 	
-	@RequestMapping(value = "clusterization/{clusterizationId}/get", method = RequestMethod.GET)
-	@ResponseBody
-	public FileSystemResource getFile(@PathVariable long clusterizationId) {
-	    return new FileSystemResource(dataService.getFile(clusterizationId)); 
+	@RequestMapping(value = "clusterization/{clusterizationId}/get", method = RequestMethod.GET)	
+	 public  @ResponseBody ResponseEntity<FileSystemResource> getFile(@PathVariable long clusterizationId){	 
+		HttpStatus  		responseCode = HttpStatus.OK;
+	  	final HttpHeaders	headers 	 = new HttpHeaders();
+	  	FileSystemResource 			res			 = null;
+	  	headers.setContentType(MediaType.TEXT_PLAIN);
+	  	headers.setContentDispositionFormData("attachment", dataService.getFilename(clusterizationId));
+		
+		try{
+			res = new FileSystemResource(dataService.getFile(clusterizationId));			
+		}catch(Exception e){
+			e.printStackTrace();			
+    	responseCode = HttpStatus.INTERNAL_SERVER_ERROR;			
+		}
+		
+		return new ResponseEntity<FileSystemResource>(res ,headers, responseCode);
 	}
+	//@ResponseBody
+	//public FileSystemResource getFile(@PathVariable long clusterizationId) {
+	//    return new FileSystemResource(dataService.getFile(clusterizationId)); 
+	//}
 }

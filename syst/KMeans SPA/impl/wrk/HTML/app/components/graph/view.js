@@ -10,7 +10,8 @@ var app = app || {};
 		// --------------------------------------------------------------------------------- //
 		
 		events: {
-			'change  .js-dim'  : 'metricChanged',			
+			'change  .js-dim'  : 'metricChanged',
+			'click .js-export' : 'exportClicked'		
 		},		
 		
 		defaults: {
@@ -71,7 +72,21 @@ var app = app || {};
 				index = 2;
 			}
 			this.metrics[index] = $select.val();
-			this.graph.changeDimensions(this.metrics);
+			this.graph.updateDimensions(this.metrics);
+		},
+
+		exportClicked: function(ev){
+			if(this.isExporting)
+				return
+			this.isExporting = true;
+    		var link = document.createElement('a');    
+       		document.body.appendChild(link); // Firefox requires the link to be in the body
+        	link.download = this.model.get("name")+".csv";
+       		link.href = app.config.serverUrl + "/clusterization/" + this.model.idd + "/get";
+       		link.click();
+        	document.body.removeChild(link); // remove the link when done
+
+        	this.isExporting = false;
 		},
 
 		// -------------------------------------------------------------------------------- //
