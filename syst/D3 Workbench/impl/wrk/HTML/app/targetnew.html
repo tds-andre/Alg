@@ -1,0 +1,181 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>D3 Workbench</title>
+
+    <meta name="description" content="Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   
+	<link href="./vendor/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+	
+    <!--Page Related Scripts-->
+	<script src="./vendor/d3/d3.js"></script>
+	<script src="./vendor/jQuery/jquery-1.11.3.min.js"></script>
+	<script src="./vendor/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="target.d3.js"></script>
+    <script src="flare.js"></script>
+    <script src="cities.js"></script>
+
+<style>
+path {
+  stroke: #fff;
+  fill-rule: evenodd;
+}
+
+</style>
+
+<script>
+var data= 
+  {
+    name: "root", 
+    children:[
+      {
+        name:"root[0]", 
+        subs:[
+          {name:"root[0][0]"},
+          {name:"root[0][1]"}
+        ]
+      },
+      {
+        name:"root[1]", 
+        subs:[
+          {name:"root[1][0]"},
+          {name:"root[1][1]"},
+          {name:"root[1][2]"}
+        ]
+      },
+      {
+        name:"root[2]", 
+        subs:[
+          {name:"root[2][0]"},
+          {name:"root[2][1]"},
+          {name:"root[2][2]"},
+          {name:"root[2][3]"},
+          {name:"root[2][4]"},
+          {name:"root[2][5]"},
+          {name:"root[2][6]"},
+          {name:"root[2][7]"},
+          {name:"root[2][8]"},
+        ]
+      },
+      {
+        name:"root[3]", 
+        subs:[
+          {name:"root[3][0]"},
+          {name:"root[3][1]"},
+          {name:"root[3][2]"},
+          {name:"root[3][3]"},
+          {name:"root[3][4]"}
+        ]
+      }
+    ]
+  }
+
+var width = 960,
+    height = 700,
+    radius = Math.min(width, height) / 2;
+
+var x = d3.scale.linear()
+    .range([0, 2 * Math.PI]);
+
+var y = d3.scale.sqrt()
+    .range([0, radius]);
+
+var color = d3.scale.category20c();
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width)
+    .attr("height", height)
+  .append("g")
+    .attr("transform", "translate(" + width / 2 + "," + (height / 2 + 10) + ")");
+
+var partition = d3.layout.partition()
+    .value(function(d) { 
+        return 1; 
+    });
+
+var arcgreen = d3.svg.arc()
+    .startAngle(function(d) { 
+      return Math.max(0, Math.min(2 * Math.PI, x(d.x))); 
+    })
+    .endAngle(function(d) { 
+      return Math.max(0, Math.min(2 * Math.PI, x(d.x + d.dx)));
+
+    })
+    .innerRadius(20)
+    .outerRadius(300);
+
+
+    
+root = flare
+
+ 
+  function updateData(data){
+    var update = svg.selectAll("path").data(partition.nodes(data), function(datum){return datum.name})
+    var insert = update.enter().append("path");
+    var remove = update.exit();
+    var d = data;
+    svg.selectAll("path").transition()
+      .duration(27500)
+      .attrTween("d", arcTween(d));
+    update.transition()
+      .duration(27500)
+      .attrTween("d", arcTween(d));
+    insert
+        .attr("d", arcgreen)
+        .style("fill", function(d) { 
+          return "green"; 
+        })
+        .on("click", click);  
+    insert.transition()
+      .duration(27500)
+      .attrTween("d", arcTween(d));
+    
+    remove.transition()
+      .duration(27500)
+      .attrTween("d", arcTween(d));
+    remove.remove();
+  }
+
+  updateData(data)
+
+  function click(d) {
+    d.children = d.subs;
+    updateData(d);
+    //path.transition()
+    //  .duration(750)
+    //  .attrTween("d", arcTween(d));
+    console.log(d);
+  }
+
+
+d3.select(self.frameElement).style("height", height + "px");
+
+// Interpolate the scales!
+function arcTween(d) {
+  var xd = d3.interpolate(x.domain(), [d.x, d.x + d.dx]);
+      //yd = d3.interpolate(y.domain(), [d.y, 1]),
+      //yr = d3.interpolate(y.range(), [d.y ? 20 : 0, radius]);
+  return function(d, i) {
+    return i
+        ? function(t) { return arcgreen(d); }
+        : function(t) { x.domain(xd(t));  return arcgreen(d); };
+  };
+}
+</script>
+
+
+
+	
+</body>
+<!--  /Body -->
+</html>
