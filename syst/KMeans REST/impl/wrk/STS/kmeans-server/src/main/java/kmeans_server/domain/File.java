@@ -31,14 +31,14 @@ public class File {
 
 	@Enumerated(EnumType.STRING)
 	private FileStatus status = FileStatus.CREATED;
-	
-	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = Dimension.class, mappedBy = "file")
+
+	@OneToMany(cascade = CascadeType.REMOVE, targetEntity = Dimension.class, mappedBy = "file")
 	public List<Dimension> dimensions;
 
-	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = Metric.class, mappedBy = "file")
+	@OneToMany(cascade = CascadeType.REMOVE, targetEntity = Metric.class, mappedBy = "file")
 	public List<Metric> metrics;
 
-	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = Clusterization.class, mappedBy = "file")
+	@OneToMany(cascade = CascadeType.REMOVE, targetEntity = Clusterization.class, mappedBy = "file")
 	private List<Clusterization> clusterizations;
 
 	// ------------------------------------------------------------------------------------------//
@@ -56,8 +56,6 @@ public class File {
 	public void setStatus(FileStatus status) {
 		this.status = status;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;
