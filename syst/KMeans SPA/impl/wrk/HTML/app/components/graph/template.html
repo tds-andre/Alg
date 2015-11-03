@@ -1,58 +1,155 @@
 <script type="text/template" id="graph-template">
     <style>
-        .js-graph:{
-            margin: 50px;
+        .grafico_lista,
+        .piechart_div
+        {
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .grafico_lista {
+            margin: 10px 0 25px;
+        }
+        .grafico_lista .lista {
+            height: 200px; 
+            overflow: auto;
+        }
+        .piechart_div {
+            margin: 0 0 5px;
         }
     </style>
-        <div class="widget">
-
-            <div class="widget-header">
-                <!--<i class="widget-icon fa fa-check"></i>-->
-                <span class="widget-caption js-title"></span>
-                <div class="widget-buttons">   
-
-                    <span class="input-icon">
-                        
-                        <select class="form-control input-xs js-dim js-x">
-                        </select>                        
-                    </span>
-                </div>
-                <div class="widget-buttons">                
-                    <span class="input-icon">
-                        
-                        <select class="form-control input-xs js-dim js-y">
-                        </select>                        
-                    </span>
-                </div>
-                <div class="widget-buttons">    
-                    <span class="input-icon">
-                        
-                        <select class="form-control input-xs js-dim js-z">
-                        </select>                        
-                    </span>
-                </div>
-                <div class="widget-buttons buttons-bordered hidden-print js-export">    
-                    <span><a class="btn btn-default btn-sm">Exportar</a></span>
-                </div>
-                <div class="widget-buttons buttons-bordered">    
-                    <a href="#" data-toggle="config">
-                        <i class="fa fa-cog"></i>
-                    </a>
-                    <a href="#" data-toggle="maximize">
-                        <i class="fa fa-expand"></i>
-                    </a>
-                    <a href="#" data-toggle="collapse">
-                        <i class="fa fa-minus"></i>
-                    </a>
-                    <a href="#" data-toggle="dispose">
-                        <i class="fa fa-times"></i>
-                    </a>
-                </div><!--Widget Buttons-->
-            </div><!--Widget Header-->
-            <div class="js-main widget-body" style="display: block; height: auto;">
-                <div class="js-graph"></div>
-            </div><!--Widget Body-->
+<div class="widget radius-bordered simulacao" style="">                                         
+    <div class="widget-header bg-seashell">
+        <span class="widget-caption silver js-title"></span>
+        
+        
+        <div class="widget-buttons buttons-bordered hidden-print">
+            <span>Dimensões <span class="badge bg-themeprimary js-dim-tooltip" data-toggle="tooltip" data-placement="right" data-original-title="Definir eixo X, eixo Y e Bolhas, respectivamente." style="vertical-align: text-bottom;">?</span> </span>              
+            <span class="padding-left-5">X: </span>
+            <label class="no-margin">
+                <select class="form-control input-xs js-dim js-x">                      
+                </select>
+            </label>
         </div>
+        
+        <div class="widget-buttons hidden-print">
+            <span>Y: </span>
+            <label class="no-margin">
+                <select class="form-control input-xs js-dim js-y">                      
+                </select>
+                <span class="text"></span>
+            </label>
+        </div>
+        
+        <div class="widget-buttons hidden-print">
+            <span>Bolhas: </span>
+            <label class="no-margin">
+                <select class="form-control input-xs js-dim js-z">                      
+                </select>
+                <span class="text"></span>
+            </label>
+        </div>                                  
+        
+        
+        
+        <div class="widget-buttons buttons-bordered hidden-print">
+            <span><a id="" class="btn btn-default btn-sm js-export">Exportar</a></span>
+        </div>
+        <div class="widget-buttons buttons-bordered hidden-print">                                  
+            <a href="#" class="js-config">
+                <i class="fa fa-cog silver"></i>
+            </a>
+            <a href="#" data-toggle="maximize">
+                <i class="fa fa-expand silver"></i>
+            </a>
+            <a href="#" data-toggle="collapse">
+                <i class="fa fa-minus silver"></i>
+            </a>
+        </div>                                  
+    </div>
+    
+    
+    <div class="widget-body">
+        <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12 js-graph-el">
+                
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+                <div  style="margin: 0 auto;width: 228px;">
+                    <div class="js-pie-el">                        
+                    
+                    </div>
+                </div>              
+                <div class="grafico_lista js-attributes-el">                        
+
+                                                            <h4 class="padding-10 no-margin-bottom padding-left-5">Municipio Lorem</h4>
+                                                            <div class="lista">
+                                                                <table class="table table-hover table-condensed">
+                                                                    <tbody>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <strong>População</strong>
+                                                                            </td>
+                                                                            <td>
+                                                                                6.320.446 hab.
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <strong>Área</strong>
+                                                                            </td>
+                                                                            <td>
+                                                                                1.197,463 km2
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <strong>Estabelecimentos de Saúde SUS</strong>
+                                                                            </td>
+                                                                            <td>
+                                                                                257
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <strong>IDHM 2010</strong>
+                                                                            </td>
+                                                                            <td>
+                                                                                0,799
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <strong>Matrícula - Ensino fundamental - 2012</strong>
+                                                                            </td>
+                                                                            <td>
+                                                                                803.315 matrículas
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                <strong>PIB per capita a preços correntes - 2012</strong>
+                                                                            </td>
+                                                                            <td>
+                                                                                R$ 34.571,91
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        
+                </div>      
+                
+            </div>                                              
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
     
 
 </script>

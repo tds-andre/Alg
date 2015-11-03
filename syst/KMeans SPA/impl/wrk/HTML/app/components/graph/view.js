@@ -27,34 +27,94 @@ var app = app || {};
 		initialize: function(){
 			this.options = {}
 			this.graph = null;
+			this.pie = null;
+			this.graphPallete = null;
+			this.piePallete = null;
+			this.attrs = null;
+			this.pieId;
+			this.clusterCount = null;
 			this.hash = (Math.random() * 100000000).toFixed();
 		},		
 
 		render: function () {
+			var
+				self = this;
 			this.$el.html(this.template());
-			$(".js-graph", this.$el).prop("id", "graph-"+this.hash);
+			this.graphId = "graph-"+this.hash;
+			this.$graph = $(".js-graph-el", this.$el).prop("id", this.graphId);
+			this.pieId = "pie-"+this.hash;
+			$(".js-pie-el", this.$el).prop("id", this.pieId);
 			this.$dim = $(".js-dim", this.$el);
+			$(".js-dim-tooltip", this.$el).tooltip();
+			$(window).bind('resize', function(){self.resize()});
 		},		
 
-		start: function(options){
+		clusterFetched: function(){
 			var
+				self = this,
 				file = null,
-				self = this;
-			$.extend(this.options, this.defaults, options);
-			this.render();
-			this.model.nest();			
+				cluster = this.model.get("clusters");
+
+			this.clusterCount = cluster.length;
+			if(this.clusterCount > 20){
+				this.graphPallete= BubbleCluster.prototype.selectColor;
+				this.piePallete= function(i){
+					BubbleCluster.prototype.selectColor(i, self.clusterCount);
+				}
+			}else if (this.clusterCount>10){
+				this.graphPallete= d3.scale.category20();
+				this.piePallete= d3.scale.category20();
+			}else{
+				this.graphPallete= d3.scale.category10();
+				this.piePallete= d3.scale.category10();
+			}
+			this.pie = new SuperPie({el: "#" + this.pieId, width:228, height:228,value: function(d){return d.count}, color: this.piePallete});
+			this.pie.update(cluster.toJSON());
+
 			file = this.model.get("file");
 			file.fetch({url: this.model.get("file").href, success: function(){
 				file.nest();
 				self.listenTo(file.get("metrics"), "reset", self.metricsReset);
 				file.get("metrics").fetch({reset: true, url: file.get("metrics").href});
-			}});			
-			
-				
+			}});
+
 		},
 
+		resize: function(e){
+			var
+				self = this;
+			window.resizeEvt;
+		    $(window).resize(function()
+		    {
+		        clearTimeout(window.resizeEvt);
+		        window.resizeEvt = setTimeout(function()
+		        {
+		        	self.graph.updateSize(self.$graph.width() ,self.graph.height)
+		        }, 250);
+		    });
+		},
 
-		
+		start: function(options){
+			var
+				file = null,
+				self = this,
+				clusters = null;
+			$.extend(this.options, this.defaults, options);
+			this.render();
+			this.model.nest();			
+			clusters = this.model.get("clusters");
+			clusters.reset();
+			this.listenTo(clusters, "reset", this.clusterFetched)
+			clusters.fetch({reset: true})
+			
+
+			$('.widget-buttons *[data-toggle="maximize"]').off();
+			InitiateWidgets();
+			
+
+			
+				
+		},		
 
 		// -------------------------------------------------------------------------------- //
 		// View callbacks ----------------------------------------------------------------- //
@@ -98,7 +158,7 @@ var app = app || {};
 				self = this;
 			d3.tsv(app.config.serverUrl + "/clusterization/" + self.model.idd + "/get",function(error, data){
 				self.data = data;
-				self.graph = new BubbleCluster({el: '#graph-'+self.hash, dimensions: self.initialMetrics() });
+				self.graph = new BubbleCluster({el: '#graph-'+self.hash, dimensions: self.initialMetrics(), height: 500, width: self.$graph.width(), color: self.graphPallete, clusters: self.model.get("clusters").map(function(el){ return el.get("ind").toString()})});
 				self.graph.update(self.data);
 			});
 		},

@@ -10,12 +10,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import kmeans_server.domain.Cluster;
 import kmeans_server.domain.Clusterization;
 import kmeans_server.domain.ClusterizationStatus;
 import kmeans_server.domain.Dimension;
 import kmeans_server.domain.FileStatus;
 import kmeans_server.domain.Metric;
 import kmeans_server.domain.SelectedMetric;
+import kmeans_server.repository.ClusterRepo;
 import kmeans_server.repository.ClusterizationRepo;
 import kmeans_server.repository.DimensionRepo;
 import kmeans_server.repository.FileRepo;
@@ -52,6 +54,8 @@ public class DataService {
 	private DimensionRepo dimensions;
 	@Autowired
 	private ClusterizationRepo clusterizations;
+	@Autowired
+	private ClusterRepo clusters;
 
 	public void processFile(long fileID) throws FlowException,ProcessingException {
 		kmeans_server.domain.File file = files.findOne(fileID);
@@ -201,7 +205,8 @@ public class DataService {
 				CSVRecord row = rows.next();
 				Instance current = null;
 				Integer clusterIndex = -1;
-				for (int i = 0; i < clusters.length; i++) {					
+				for (int i = 0; i < clusters.length; i++) {
+					
 					for (int j = 0; j < clusters[i].size(); j++) {
 						Instance datum = clusters[i].get(j);
 						if(((String)datum.classValue()).equals(rowId.toString())){
@@ -223,8 +228,21 @@ public class DataService {
 			}			
 			writer.close();
 			
+			//Create cluster entities
+			List<Cluster> cs = new ArrayList<Cluster>();
+			for(int i = 0; i < clusters.length; i++){
+				Cluster c = new Cluster();
+				c.setName("Cluster " + i);
+				c.setCount(clusters[i].size());
+				c.setClusterization(config);
+				c.setInd(i);
+				cs.add(c);
+			}
+			config.setClusters(cs);
+			
 			//Finaliza
 			config.setStatus(ClusterizationStatus.READY);
+			this.clusters.save(cs);
 			clusterizations.save(config);
 		
 		//Trata exceções

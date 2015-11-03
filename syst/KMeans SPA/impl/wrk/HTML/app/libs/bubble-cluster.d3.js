@@ -11,7 +11,8 @@ function BubbleCluster(args){
                 
             },
 			cluster: function(datum,i){return datum[datum.length-1]},
-			duration: 500
+			duration: 500,
+            color: this.selectColor
 		}	
 
 	
@@ -26,8 +27,8 @@ function BubbleCluster(args){
     this.el = this.options.el
     this.clusters = [];
     this.scale.color = function(clusterName){
-    	return selectColor(self.clusters.indexOf(clusterName), self.clusters.length)
-    }
+        return self.options.color(self.clusters.indexOf(clusterName), self.clusters.length)
+    }//this.options.color;
 
     this.chart = d3.select(this.el).append("svg")
 		.attr("width", this.width)
@@ -137,13 +138,17 @@ function BubbleCluster(args){
 
 
 	this.updateClusters = function(){
-		var
-			clusters = []
-		for(var i = 0; i < this.data.length; i ++){
-			if(clusters.indexOf(this.data[i][this.keys[3]])==-1)
-				clusters.push(this.data[i][this.keys[3]])
-		}
-		this.clusters = clusters;
+        if(this.options.clusters){
+            this.clusters = this.options.clusters;
+        }else{
+    		var
+    			clusters = []
+    		for(var i = 0; i < this.data.length; i ++){
+    			if(clusters.indexOf(this.data[i][this.keys[3]])==-1)
+    				clusters.push(this.data[i][this.keys[3]])
+    		}
+    		this.clusters = clusters;
+        }
 	}
 
 	this.updateDimensions = function(keys){
@@ -160,9 +165,11 @@ function BubbleCluster(args){
         this.update(this.data);
     }
 
-	function selectColor(colorNum, colors){
-    	if (colors < 1) colors = 1; // defaults to one color - avoid divide by zero
-    		return "hsl(" + (colorNum * (360 / colors) % 360) + ",100%,50%)";
-	}
+	
 
 }
+
+BubbleCluster.prototype.selectColor = function(colorNum, colors){
+        if (colors < 1) colors = 1; // defaults to one color - avoid divide by zero
+            return "hsl(" + (colorNum * (360 / colors) % 360) + ",100%,50%)";
+    }

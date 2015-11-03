@@ -29,6 +29,19 @@ app.domain = app.domain || {};
 
 	//------------------------------------------------------------------------------//
 
+
+	//------------------------------------------------------------------------------//
+
+	app.domain.Cluster = app.BaseModel.extend({
+		
+	});
+	app.domain.ClusterCollection = app.BaseCollection.extend({
+		path: "cluster",
+		model: app.domain.Cluster
+	});
+
+	//------------------------------------------------------------------------------//
+
 	app.domain.File = app.BaseModel.extend({
 		nested: {			
 			metrics: app.domain.MetricCollection,
@@ -80,7 +93,8 @@ app.domain = app.domain || {};
 		nested:{
 			metrics: app.domain.MetricCollection,
 			selection: app.domain.SelectedMetricCollection,
-			file: app.domain.File
+			file: app.domain.File,
+			clusters: app.domain.ClusterCollection
 		},
 		validate: function(attributes, options){
 			var 				

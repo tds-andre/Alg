@@ -16,6 +16,8 @@
 <?php include_once "components/file-create-update/template.html"; ?>
 <?php include_once "components/file-upload/template.html"; ?>
 <?php include_once "components/graph/template.html"; ?>
+<?php include_once "components/attribute-list/template.html"; ?>
+<?php include_once "components/attribute-list-item/template.html"; ?>
 
 
 
@@ -64,6 +66,8 @@
 
 <!--Libraries-->
 
+
+<!--App-->
 <script src="vendor/underscore/underscore-min.js" type="text/javascript"></script>
 <script src="vendor/backbone/backbone.js" type="text/javascript"></script>
 <script src="vendor/jfeldstein/jQuery.AjaxFileUpload.js/jQuery.AjaxFileUpload.js" type="text/javascript"></script>
@@ -72,8 +76,10 @@
 <script type="text/javascript" src="vendor/d3/d3.js"></script>
 <script type="text/javascript" src="vendor/d3/d3-popover.js"></script>
 <script type="text/javascript" src="libs/bubble-cluster.d3.js"></script>
+<script type="text/javascript" src="libs/super-pie.d3.js"></script>
 <link href="libs/bubble-cluster.d3.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="libs/tds-spinner.js"></script>
+
 <!--Groundwork-->
 <script type="text/javascript" src="config.js"></script>
 <script type="text/javascript" src="models.js"></script>
@@ -96,6 +102,8 @@
 <script type="text/javascript" src="components/file-details/view.js"></script>
 <script type="text/javascript" src="components/file-create-update/view.js"></script>
 <script type="text/javascript" src="components/graph/view.js"></script>
+<script type="text/javascript" src="components/attribute-list/view.js"></script>
+<script type="text/javascript" src="components/attribute-list-item/view.js"></script>
 
 
 

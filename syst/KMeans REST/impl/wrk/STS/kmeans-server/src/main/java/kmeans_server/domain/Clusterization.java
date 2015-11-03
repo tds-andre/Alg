@@ -32,6 +32,9 @@ public class Clusterization {
 
 	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = SelectedMetric.class, mappedBy = "clusterization")
 	private List<SelectedMetric> selection;
+	
+	@OneToMany(cascade=CascadeType.REMOVE, targetEntity = Cluster.class, mappedBy = "clusterization")
+	private List<Cluster> clusters;
 
 	private int initial = 5;
 
@@ -51,6 +54,17 @@ public class Clusterization {
 	public List<SelectedMetric> getSelection() {
 		return selection;
 	}
+
+	
+	public List<Cluster> getClusters() {
+		return clusters;
+	}
+
+
+	public void setClusters(List<Cluster> clusters) {
+		this.clusters = clusters;
+	}
+
 
 	public Boolean getNormalize() {
 		return normalize;

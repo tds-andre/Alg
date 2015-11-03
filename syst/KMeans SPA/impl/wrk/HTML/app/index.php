@@ -776,6 +776,7 @@ Purchase: http://wrapbootstrap.com
     <!--Page Related Scripts-->
     <script src="../assets/js/bootbox/bootbox.js"></script>
     <script src="../assets/js/fuelux/wizard/wizard-custom.js"></script>
+    <script src="../assets/js/slider/jquery.nouislider.js"></script>
     <?php include_once "app.php"; ?>
 
     <script>
