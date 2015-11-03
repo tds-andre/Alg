@@ -24,9 +24,12 @@ form {
   <label><input type="radio" name="dataset" value="apples" checked> Apples</label>
   <label><input type="radio" name="dataset" value="oranges"> Oranges</label>
 </form>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+<script src="./vendor/d3/d3.js"></script>
+  <script src="./vendor/jQuery/jquery-1.11.3.min.js"></script>
+  <script src="./vendor/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+<script src="super-pie.d3.js"></script>
 <script>
-
+/*
 var width = 960,
     height = 500,
     radius = Math.min(width, height) / 2;
@@ -40,9 +43,7 @@ var pie = d3.layout.pie()
 var arc = d3.svg.arc()
     .innerRadius(20)
     .outerRadius(radius - 20);
-  var arc = d3.svg.arc()
-    .innerRadius(20)
-    .outerRadius(radius - 20);
+
 
 var svg = d3.select("body").append("svg")
     .attr("width", width)
@@ -89,6 +90,18 @@ function arcTween(a) {
   return function(t) {
     return arc(i(t));
   };
+}*/
+function type(d) {
+  d.apples = +d.apples;
+  d.oranges = +d.oranges;
+  return d;
 }
+var data = null;
+var pie = new SuperPie({value: function(d){return d.apples}})
+d3.tsv("fruits.tsv", type, function(error, _data) {
+  data = _data
+  pie.update(data);
 
+
+})
 </script>
