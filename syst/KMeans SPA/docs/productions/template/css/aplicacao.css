@@ -1,12 +1,20 @@
 
-.grafico_lista,
-.piechart_div
-{
+.coluna_retratil_inner {
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+	/*padding-left: 30px;*/
+}
+.coluna_retratil_inner .btn_div {
+	text-align: right;
+	padding: 5px 5px 0 0;
 }
 
+
 .grafico_lista {
-	margin: 10px 0 25px;
+	margin: 0px 0 25px 5px;
+}
+.grafico_lista h4 {
+	margin: 0px;
+	padding: 0 10px 10px 4px;
 }
 .grafico_lista .lista {
 	height: 200px; 
@@ -14,4 +22,14 @@
 }
 .piechart_div {
 	margin: 0 0 5px;
+}
+
+
+.coluna_expansivel.full {
+	width: 100%;
+}
+.coluna_expansivel .btn_div {
+    position: absolute;
+    right: 20px;
+    top: 5px;
 }

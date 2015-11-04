@@ -30,6 +30,11 @@ var app = app || {};
 		render: function () {
 			this.$el.html(this.template());	
 			this.$table = $(".js-table", this.$el);
+			for(var key in this.model){
+				var v = new app.AttributeListItemView({model: {key: key, value: this.model[key]}});
+				v.start();
+				this.$table.append(v.el);
+			}
 			return this;			
 		},
 

@@ -25,7 +25,7 @@ function BubbleCluster(args){
     this.axes = {};
     this.keys = args.dimensions; 
     this.el = this.options.el
-    this.clusters = [];
+    this.clusters = this.options.clusters || [];
     this.scale.color = function(clusterName){
         return self.options.color(self.clusters.indexOf(clusterName), self.clusters.length)
     }//this.options.color;
@@ -36,9 +36,24 @@ function BubbleCluster(args){
         
     
     
+    this.unselect = function(){
+        d3.select(this.selected.view)
+            .attr("stroke-width", 1)                
+            .attr("stroke",  "black")
+            .style('fill-opacity', 0.5)
+        this.selected = null;
+    }
 
+    this.select = function(view,data){
+        this.selected = {view: view,data: data}
+        d3.select(view)
+            .attr("stroke-width", 5)                
+            .attr("stroke",  "red")
+            .style('fill-opacity', 1)
+    }
 
     this.update = function(data){
+
     	var
     		self =this;
     	self.data = data;
@@ -46,7 +61,8 @@ function BubbleCluster(args){
 
 		self.updateScales();
 		self.updateClusters();
-        self.updateAxes();
+        
+        this.selected = null;
 
         //update
         circle
@@ -65,7 +81,9 @@ function BubbleCluster(args){
                 .attr("transform", "translate(60,0)")
                 .attr("cx", function(el){return self.scale.x(Number(el[self.keys[0]]))})
                 .attr("cy", function(el){return self.scale.y(Number(el[self.keys[1]]))})                
-                .attr("fill", function(el){return self.scale.color(el[self.keys[3]])})
+                .attr("fill", function(el){
+                	return self.scale.color(el[self.keys[3]])
+                })
                 .attr("fill-opacity", 0.5)
                 .attr("stroke-width", 1)                
                 .attr("stroke",  "black")
@@ -79,7 +97,23 @@ function BubbleCluster(args){
                 .on("mouseout", function(el){
                     d3.select(this)
                         .style('fill-opacity', 0.5)
-                });
+                })
+                .on("click", function(d){
+                    if(self.options.click){
+                        if(self.selected){
+                            if(self.selected.data == d){
+                                self.unselect(self.selected); 
+                                d = null;                         
+                            }else{
+                                self.unselect(self.selected);
+                                self.select(this,d);
+                            }
+                        }else{
+                            self.select(this,d);
+                        }
+                        self.options.click(self,this,d);
+                    }
+                })
 
                 
         entered
@@ -98,6 +132,9 @@ function BubbleCluster(args){
        			.attr("r",0);
        	exited.
        		remove();
+
+
+        self.updateAxes();
 
                 
 	}

@@ -389,7 +389,7 @@ Purchase: http://wrapbootstrap.com
                     <!-- Uploads-->
                     <li>
                         <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-sitemap"></i>
+                            <i class="menu-icon fa fa-upload"></i>
                             <span class="menu-text"> Uploads </span>
 							<i class="menu-expand"></i>
                         </a>
@@ -411,7 +411,7 @@ Purchase: http://wrapbootstrap.com
                     <!-- Clusterizacoes -->
                     <li>
                         <a href="#" class="menu-dropdown">
-                            <i class="menu-icon fa fa-file-text"></i>
+                            <i class="menu-icon fa fa-cogs"></i>
                             <span class="menu-text"> Clusterizações </span>
 							<i class="menu-expand"></i>
                         </a>
@@ -480,11 +480,11 @@ Purchase: http://wrapbootstrap.com
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 						
 						
-                            <!-- widget -->
+                            <!-- widget selecao/mensagem -->
 							<div class="widget radius-bordered simulacao">
 								<div class="widget-body">
 								
-									<div class="well well-sm">
+									<div class="well well-sm margin-bottom-20">
 										<form class="form-horizontal" role="form">
 											<div class="form-group">
 												<label for="origem" class="col-sm-2 control-label no-padding-right">Clusterizações </label>
@@ -500,175 +500,218 @@ Purchase: http://wrapbootstrap.com
 
 										</form>
 									</div>
-
 									
 									<!-- mensagem -->
-									<div class="bg-blue white padding-20"><h5 class="no-margin-bottom"><i class="fa fa-info-circle"></i> Selecione uma Clusterização para prosseguir.</h5></div>
+									<div class="bg-blue white padding-20"><h5 class="no-margin-bottom no-margin-top"><i class="fa fa-info-circle"></i> Selecione uma Clusterização para prosseguir.</h5></div>
 
 								</div>
 							</div>
-							<!-- /widget -->
-										
-										
+							<!-- /widget selecao/mensagem -->
 										
 
 
-										<!-- widget graficos -->
-										<div class="widget radius-bordered simulacao" style="display: none;">
+							<!-- widget graficos -->
+							<div class="widget radius-bordered simulacao" style="display: none;">
+								
+								<div class="widget-header bg-seashell">
+									<span class="widget-caption silver">Clusterização 01 / Arquivo.csv</span>
+									
+									
+									<div class="widget-buttons buttons-bordered hidden-print">
+										<span>Dimensões <span class="badge bg-themeprimary" data-toggle="tooltip" data-placement="right" data-original-title="Definir eixo X, eixo Y e Bolhas, respectivamente." style="vertical-align: text-bottom;">?</span> </span>
+										
+										<span class="padding-left-5">X: </span>
+										<label class="no-margin">
+											<select class="form-control input-xs js-dim js-x">
+												<option class="" value="m1" selected="selected">m1</option>
+												<option class="" value="m2">m2</option>
+												<option class="" value="m3">m3</option>
+												<option class="" value="m4">m4</option>
+											</select>
+										</label>
+									</div>
+									
+									<div class="widget-buttons hidden-print">
+										<span>Y: </span>
+										<label class="no-margin">
+											<select class="form-control input-xs js-dim js-x">
+												<option class="" value="m1"="selected">m1</option>
+												<option class="" value="m2" selected>m2</option>
+												<option class="" value="m3">m3</option>
+												<option class="" value="m4">m4</option>
+											</select>
+											<span class="text"></span>
+										</label>
+									</div>
+									
+									<div class="widget-buttons hidden-print">
+										<span>Bolhas: </span>
+										<label class="no-margin">
+											<select class="form-control input-xs js-dim js-x">
+												<option class="" value="m1"="selected">m1</option>
+												<option class="" value="m2">m2</option>
+												<option class="" value="m3" selected>m3</option>
+												<option class="" value="m4">m4</option>
+											</select>
+											<span class="text"></span>
+										</label>
+									</div>									
+									
+									
+									
+									<div class="widget-buttons buttons-bordered hidden-print">
+										<span><a id="" class="btn btn-default btn-sm">Exportar</a></span>
+									</div>
+									<div class="widget-buttons buttons-bordered hidden-print">									
+										<a href="#" data-target="#config_painel" data-toggle="modal" title="Configurações">
+											<i class="fa fa-cog silver"></i>
+										</a>
+										<a href="#" data-toggle="maximize">
+											<i class="fa fa-expand silver"></i>
+										</a>
+										<a href="#" data-toggle="collapse">
+											<i class="fa fa-minus silver"></i>
+										</a>
+										<a href="#" data-toggle="dispose">
+											<i class="fa fa-times silver"></i>
+										</a>
+									</div>									
+								</div>
+								
+								
+								<div class="widget-body">
+									<div class="row">
+										
+										<!-- coluna_expansivel -->
+										<div class="col-md-8 col-sm-12 col-xs-12 coluna_expansivel">
 											
-											<div class="widget-header bg-seashell">
-												<span class="widget-caption silver">Clusterização 01 / Arquivo.csv</span>
-												
-												
-												<div class="widget-buttons buttons-bordered hidden-print">
-													<span>Dimensões <span class="badge bg-themeprimary" data-toggle="tooltip" data-placement="right" data-original-title="Definir eixo X, eixo Y e Bolhas, respectivamente." style="vertical-align: text-bottom;">?</span> </span>
-													
-													<span class="padding-left-5">X: </span>
-													<label class="no-margin">
-														<select class="form-control input-xs js-dim js-x">
-															<option class="" value="m1" selected="selected">m1</option>
-															<option class="" value="m2">m2</option>
-															<option class="" value="m3">m3</option>
-															<option class="" value="m4">m4</option>
-														</select>
-													</label>
-												</div>
-												
-												<div class="widget-buttons hidden-print">
-													<span>Y: </span>
-													<label class="no-margin">
-														<select class="form-control input-xs js-dim js-x">
-															<option class="" value="m1"="selected">m1</option>
-															<option class="" value="m2" selected>m2</option>
-															<option class="" value="m3">m3</option>
-															<option class="" value="m4">m4</option>
-														</select>
-														<span class="text"></span>
-													</label>
-												</div>
-												
-												<div class="widget-buttons hidden-print">
-													<span>Bolhas: </span>
-													<label class="no-margin">
-														<select class="form-control input-xs js-dim js-x">
-															<option class="" value="m1"="selected">m1</option>
-															<option class="" value="m2">m2</option>
-															<option class="" value="m3" selected>m3</option>
-															<option class="" value="m4">m4</option>
-														</select>
-														<span class="text"></span>
-													</label>
-												</div>									
-												
-												
-												
-												<div class="widget-buttons buttons-bordered hidden-print">
-													<span><a id="" class="btn btn-default btn-sm">Exportar</a></span>
-												</div>
-												<div class="widget-buttons buttons-bordered hidden-print">									
-													<a href="#" data-target="#config_painel" data-toggle="modal" title="Configurações">
-														<i class="fa fa-cog silver"></i>
-													</a>
-													<a href="#" data-toggle="maximize">
-														<i class="fa fa-expand silver"></i>
-													</a>
-													<a href="#" data-toggle="collapse">
-														<i class="fa fa-minus silver"></i>
-													</a>
-												</div>									
-											</div>
+											<!-- botao expandir -->
+											<div class="btn_div bt_expandir_col" style="display: none;">
+												<a class="btn btn-default btn-xs icon-only silver" href="javascript:void(0);" title="Exibir"><i class="fa fa-arrows-h"></i></a>
+											</div>										
+										
+											<!-- grafico -->
+											<img src="img_prototipo/bubble_chart.png" style="width: 100%;" />
 											
-											
-											<div class="widget-body">
-												<div class="row">
-													<div class="col-md-8 col-sm-12 col-xs-12">
-														<img src="img_prototipo/bubble_chart.png" style="width: 100%;" />
-													</div>
-													<div class="col-md-4 col-sm-12 col-xs-12">
-														
-														
-														<div class="grafico_lista">
-															<h4 class="padding-10 no-margin-bottom padding-left-5">Municipio Lorem</h4>
-															<div class="lista">
-																<table class="table table-hover table-condensed">
-																	<tbody>
-																		<tr>
-																			<td>
-																				<strong>População</strong>
-																			</td>
-																			<td>
-																				6.320.446 hab.
-																			</td>
-																		</tr>
-																		<tr>
-																			<td>
-																				<strong>Área</strong>
-																			</td>
-																			<td>
-																				1.197,463 km2
-																			</td>
-																		</tr>
-																		<tr>
-																			<td>
-																				<strong>Estabelecimentos de Saúde SUS</strong>
-																			</td>
-																			<td>
-																				257
-																			</td>
-																		</tr>
-																		<tr>
-																			<td>
-																				<strong>IDHM 2010</strong>
-																			</td>
-																			<td>
-																				0,799
-																			</td>
-																		</tr>
-																		<tr>
-																			<td>
-																				<strong>Matrícula - Ensino fundamental - 2012</strong>
-																			</td>
-																			<td>
-																				803.315	matrículas
-																			</td>
-																		</tr>
-																		<tr>
-																			<td>
-																				<strong>PIB per capita a preços correntes - 2012</strong>
-																			</td>
-																			<td>
-																				R$ 34.571,91
-																			</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-														</div>
-														
-														
-														<div class="piechart_div">
-															<div class="margin-10 padding-top-10">
-																<select class="input-xs">
-																	<option selected">Lorem</option>
-																	<option>Ipsum</option>
-																	<option>Dolor</option>
-																</select>
-															</div>
-															<img src="img_prototipo/pie_chart.png" style="display: block; margin: 0 auto;" />
-														</div>
-													</div>												
-												</div>
-
-											</div>
 										</div>
-										<!-- /widget graficos -->
+										
+										
+										<!-- coluna_retratil -->
+										<div class="col-md-4 col-sm-12 col-xs-12 coluna_retratil">
+											<div class="coluna_retratil_inner">
+											
+												<!-- botao contrair -->
+												<div class="btn_div">
+													<a class="btn btn-default btn-xs icon-only silver bt_retrair_col" href="javascript:void(0);" title="Ocultar"><i class="fa fa-arrows-h"></i></a>
+												</div>
+												
+												<!-- lista -->
+												<div class="grafico_lista">
+													<h4>Municipio Lorem</h4>
+													<div class="lista">
+														<table class="table table-hover table-condensed">
+															<tbody>
+																<tr>
+																	<td>
+																		<strong>População</strong>
+																	</td>
+																	<td>
+																		6.320.446 hab.
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<strong>Área</strong>
+																	</td>
+																	<td>
+																		1.197,463 km2
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<strong>Estabelecimentos de Saúde SUS</strong>
+																	</td>
+																	<td>
+																		257
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<strong>IDHM 2010</strong>
+																	</td>
+																	<td>
+																		0,799
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<strong>Matrícula - Ensino fundamental - 2012</strong>
+																	</td>
+																	<td>
+																		803.315	matrículas
+																	</td>
+																</tr>
+																<tr>
+																	<td>
+																		<strong>PIB per capita a preços correntes - 2012</strong>
+																	</td>
+																	<td>
+																		R$ 34.571,91
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</div>
+												
+												<hr class="margin-left-20 margin-right-20 no-margin-bottom" />
+												
+												<!-- piechart -->
+												<div class="piechart_div">
+													<div class="margin-10 padding-top-10">
+														<select class="input-xs">
+															<option selected">Lorem</option>
+															<option>Ipsum</option>
+															<option>Dolor</option>
+														</select>
+													</div>
+													<img src="img_prototipo/pie_chart.png" style="display: block; margin: 0 auto;" />
+												</div>
+										
+											</div>
+										</div>												
+									</div>
 
+								</div>
+							</div>
+							<!-- /widget graficos -->
 
+							
+							
+                            <!-- nova selecao -->
+							<a href="javascript:void(0);" class="btn btn-labeled btn-blue simulacao nova_selecao" style="display: none;" onclick="$('.nova_selecao').toggle();">
+								<i class="btn-label fa fa-plus"></i>Adicionar Visualização
+							</a>
+								
+							<div class="well well-sm margin-bottom-20 nova_selecao" style="display: none;">
+								<form class="form-horizontal" role="form">
+									<div class="form-group no-margin-bottom">
+										<label for="origem" class="col-sm-2 control-label no-padding-right">Clusterizações </label>
+										<div class="col-sm-4">
+											<select class="form-control select">
+												<option>Selecione</option>
+												<option>Clusterização 01</option>
+												<option>Clusterização 02</option>
+												<option>Clusterização 03</option>
+											</select>
+										</div>
+									</div>
 
-
-
-
-						
+								</form>
+							</div>
+							<!-- /nova selecao -->
+							
+							
 
 							
                         </div>
@@ -826,6 +869,22 @@ Purchase: http://wrapbootstrap.com
 						  [$('#minimal-label2'), 'html']]
 				}
 			});
+			
+			
+			// ocultar coluna 
+			$('.bt_retrair_col').click(function(){
+				$('.coluna_retratil').toggle();
+				$('.coluna_expansivel').toggleClass('full');
+				$('.bt_expandir_col').toggle();				
+			});
+			
+			// exibir coluna 
+			$('.bt_expandir_col').click(function(){
+				$('.coluna_retratil').toggle();
+				$('.coluna_expansivel').toggleClass('full');
+				$('.bt_expandir_col').toggle();				
+			});			
+
 
 			
 
