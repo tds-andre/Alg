@@ -3,7 +3,7 @@ var app = app || {};
 
 	'use strict';	
 
-	app.##class-name## = Backbone.View.extend({
+	app.GraphConfigView = Backbone.View.extend({
 
 		// --------------------------------------------------------------------------------- //
 		// Variables ----------------------------------------------------------------------- //
@@ -23,12 +23,17 @@ var app = app || {};
 		// Core --------------------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
 
+		show: function(){
+			this.$modal.modal("show");
+		},
+
 		initialize: function(){
 			this.options = {}
 		},		
 
 		render: function () {
-			this.$el.html(this.template());			
+			this.$el.html(this.template());	
+			this.$modal = $(".js-modal", this.el);
 			return this;			
 		},
 

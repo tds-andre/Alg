@@ -12,7 +12,9 @@ function BubbleCluster(args){
             },
 			cluster: function(datum,i){return datum[datum.length-1]},
 			duration: 500,
-            color: this.selectColor
+            color: this.selectColor,
+            min:5,
+            max:16
 		}	
 
 	
@@ -23,6 +25,7 @@ function BubbleCluster(args){
     this.height = this.options.height;// - this.margin.top - this.margin.bottom;
     this.scale = {};
     this.axes = {};
+    this.selected = null;
     this.keys = args.dimensions; 
     this.el = this.options.el
     this.clusters = this.options.clusters || [];
@@ -62,7 +65,7 @@ function BubbleCluster(args){
 		self.updateScales();
 		self.updateClusters();
         
-        this.selected = null;
+        
 
         //update
         circle
@@ -129,9 +132,9 @@ function BubbleCluster(args){
        	exited
        		.transition()
        			.duration(this.options.duration)
-       			.attr("r",0);
-       	exited.
-       		remove();
+       			.attr("r",0)
+       	
+       		.remove();
 
 
         self.updateAxes();
@@ -145,7 +148,7 @@ function BubbleCluster(args){
 
 		self.scale.radius = d3.scale.linear()
 		    .domain([d3.min(self.data, function(el){return Number(el[self.keys[2]])}), d3.max(self.data, function(el){return Number(el[self.keys[2]])})])
-		    .range([5, 16]);
+		    .range([this.options.min, this.options.max]);
 		self.scale.x = d3.scale.linear()
 		    .domain([d3.min(self.data, function(el){return Number(el[self.keys[0]])}), d3.max(self.data, function(el){return Number(el[self.keys[0]])})])
 		    .range([50, self.width - 50 - 60]);
@@ -153,6 +156,12 @@ function BubbleCluster(args){
 		    .domain([d3.min(self.data, function(el){return Number(el[self.keys[1]])}), d3.max(self.data, function(el){return Number(el[self.keys[1]])})])
 		    .range([self.height - 50,  50]);
 	}
+
+    this.updateRadius = function(min,max){
+        this.options.min = min;
+        this.options.max = max;
+        this.update(this.data);
+    }
 
     this.updateAxes = function(){
          $(".axis", this.el).remove();

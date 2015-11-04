@@ -3,7 +3,7 @@ var app = app || {};
 
 	'use strict';	
 
-	app.AttributeListView = Backbone.View.extend({
+	app.AddGraphView = Backbone.View.extend({
 
 		// --------------------------------------------------------------------------------- //
 		// Variables ----------------------------------------------------------------------- //
@@ -17,7 +17,7 @@ var app = app || {};
 			
 		},	
 
-		template: _.template($('#attribute-list').html()),
+		template: _.template($('#add-graph-template').html()),
 
 		// -------------------------------------------------------------------------------- //
 		// Core --------------------------------------------------------------------------- //
@@ -28,31 +28,13 @@ var app = app || {};
 		},		
 
 		render: function () {
-			this.$el.html(this.template());	
-			this.$table = $(".js-table", this.$el);
-			this.$list = $(".js-list", this.$el)
-			for(var key in this.model){
-				var v = new app.AttributeListItemView({model: {key: key, value: this.model[key]}});
-				v.start();
-				this.$table.append(v.el);
-			}
-
+			this.$el.html(this.template());			
 			return this;			
 		},
 
 		start: function(options){
 			$.extend(this.options, this.defaults, options);
 			return this.render();			
-		},
-
-		expand: function(){
-			$(".js-list", this.$el).removeClass("lista");
-		},
-		contract: function(){
-			$(".js-list", this.$el).addClass("lista");
-		},
-		toggle: function(){
-			$(".js-list").toggleClass("lista");
 		},
 
 		// -------------------------------------------------------------------------------- //

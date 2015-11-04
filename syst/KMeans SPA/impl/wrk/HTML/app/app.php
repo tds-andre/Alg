@@ -18,6 +18,7 @@
 <?php include_once "components/graph/template.html"; ?>
 <?php include_once "components/attribute-list/template.html"; ?>
 <?php include_once "components/attribute-list-item/template.html"; ?>
+<?php include_once "components/graph-config/template.html"; ?>
 
 
 
@@ -104,12 +105,14 @@
 <script type="text/javascript" src="components/graph/view.js"></script>
 <script type="text/javascript" src="components/attribute-list/view.js"></script>
 <script type="text/javascript" src="components/attribute-list-item/view.js"></script>
+<script type="text/javascript" src="components/graph-config/view.js"></script>
 
 
 
 <!--App & Initialization-->
 <script type="text/javascript" src="routes.js"></script>
 <script type="text/javascript" src="app.js"></script>
+
 
 
 

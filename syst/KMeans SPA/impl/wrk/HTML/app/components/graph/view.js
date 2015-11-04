@@ -11,7 +11,9 @@ var app = app || {};
 		
 		events: {
 			'change  .js-dim'  : 'metricChanged',
-			'click .js-export' : 'exportClicked'		
+			'click .js-export' : 'exportClicked',
+			'click .js-config' : 'configClicked',
+			'click .js-maximize': 'maximizeClicked'	
 		},		
 		
 		defaults: {
@@ -31,8 +33,11 @@ var app = app || {};
 			this.graphPallete = null;
 			this.piePallete = null;
 			this.attrs = null;
-			this.pieId;			
+			this.pieId;
+			this.config = null;		
 			this.clusterCount = null;
+			this.maximized = false;
+			this.height = 500;
 			this.hash = (Math.random() * 100000000).toFixed();
 		},		
 
@@ -48,15 +53,22 @@ var app = app || {};
 			$(".js-dim-tooltip", this.$el).tooltip();
 			$(window).bind('resize', function(){self.resize()});
 			this.$attrs =  $(".js-attributes-el", this.$el);
+			this.config = new app.GraphConfigView({el: $(".js-modal-el")[0], model: this.model});
+			this.config.start();
 			this.updateTitle()
 		},
 
 		clusterSelected: function(data){
 			var self = this;
-			if(data)
+			if(data){
+				if(this.graph.selected && this.graph.selected.data.cluster!=data.data.ind){
+					this.graph.unselect();
+					this.memberClicked(null)
+				}
 				this.graph.update(self.data.filter(function(d){
 					return d.cluster == data.data.ind
 				}));
+			}
 			else
 				this.graph.update(self.data);
 		},
@@ -96,7 +108,7 @@ var app = app || {};
 
 		},
 
-		resize: function(e){
+		resize: function(e,height){
 			var
 				self = this;
 			window.resizeEvt;
@@ -105,7 +117,7 @@ var app = app || {};
 		        clearTimeout(window.resizeEvt);
 		        window.resizeEvt = setTimeout(function()
 		        {
-		        	self.graph.updateSize(self.$graph.width() ,self.graph.height)
+		        	self.graph.updateSize(self.$graph.width() + 10 ,height || self.height)
 		        }, 250);
 		    });
 		},
@@ -135,6 +147,22 @@ var app = app || {};
 		// -------------------------------------------------------------------------------- //
 		// View callbacks ----------------------------------------------------------------- //
 		// -------------------------------------------------------------------------------- //
+		maximizeClicked: function(ev){
+			var self = this;
+			this.maximized = !this.maximized;
+			if(this.maximized){
+				self.graph.updateSize(self.$graph.width() + 10 ,$(document).height() - 200)
+				self.attrs.expand();
+			}
+			else{
+				self.graph.updateSize(self.$graph.width() + 10 ,self.height)
+				self.attrs.contract();
+			}
+			
+		},
+		configClicked: function(ev){
+			this.config.show();
+		},
 
 		metricChanged: function(ev){
 			var 
@@ -170,6 +198,8 @@ var app = app || {};
 			if(data){
 				this.attrs = new app.AttributeListView({el: self.$attrs[0], model: data});
 				this.attrs.start();
+				if(this.maximized)
+					this.attrs.expand();
 			}else
 				self.$attrs.html("");
 
@@ -187,7 +217,7 @@ var app = app || {};
 				for(var i = 0; i < self.data.length; i++){
 					self.data[i]._id = i;
 				}
-				self.graph = new BubbleCluster({click: function(view,el,data){self.memberClicked(data)},key: function(d){return d._id},el: '#graph-'+self.hash, dimensions: self.initialMetrics(), height: 500, width: self.$graph.width(), color: self.graphPallete, clusters: self.model.get("clusters").map(function(el){ return el.get("ind").toString()})});
+				self.graph = new BubbleCluster({click: function(view,el,data){self.memberClicked(data)},key: function(d){return d._id},el: '#graph-'+self.hash, dimensions: self.initialMetrics(), height: self.height, width: self.$graph.width() + 10, color: self.graphPallete, clusters: self.model.get("clusters").map(function(el){ return el.get("ind").toString()})});
 				self.graph.update(self.data);
 			});
 		},

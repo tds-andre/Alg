@@ -1,95 +1,97 @@
 <script type="text/template" id="graph-config">
-<div class="modal fade js-config-modal" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-        
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Configurações</h4>
-            </div>
-
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">                 
-                        <h6>Tamanho da Bolha</h6>
-                        <div class="row">
-                            <div class="col-sm-2 text-align-right">Mín <span class="label label-default carbon" id="minimal-label1">20</span></div>
-                            <div class="col-sm-4"><div id="sample-minimal" class="colored-blue slider-xs noUi-target noUi-ltr noUi-horizontal noUi-background"><div class="noUi-base"><div style="left: 20%;" data-style="left" class="noUi-origin noUi-connect"><div class="noUi-handle noUi-handle-lower"></div></div><div style="left: 80%;" data-style="left" class="noUi-origin noUi-background"><div class="noUi-handle noUi-handle-upper"></div></div></div></div></div>                             
-                            <div class="col-sm-2"><span class="label label-default carbon" id="minimal-label2">80</span> Máx</div>                              
-                        </div>
-                    </div>                  
-                </div>
-                
-                <div class="horizontal-space margin-top-10"></div>
-                
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h6>Labels</h6>                     
-                        <div class="row form-group">
-                            <div class="col-sm-1 no-padding-right text-align-right">
-                                <span class="badge badge-square badge-empty padding-10" style="background-color: #0088FF;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <input class="form-control input-xs" value="Lorem">
-                            </div>
-                            <div class="col-sm-1 no-padding-right text-align-right">
-                                <span class="badge badge-square badge-empty padding-10" style="background-color: #7E7EFD;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <input class="form-control input-xs" value="Ipsum">
-                            </div>
-                            <div class="col-sm-1 no-padding-right text-align-right">
-                                <span class="badge badge-square badge-empty padding-10" style="background-color: #FE1F1F;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <input class="form-control input-xs" value="Dolor">
-                            </div>                               
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-sm-1 no-padding-right text-align-right">
-                                <span class="badge badge-square badge-empty padding-10" style="background-color: #FD7E7E;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <input class="form-control input-xs" value="Lorem">
-                            </div>
-                            <div class="col-sm-1 no-padding-right text-align-right">
-                                <span class="badge badge-square badge-empty padding-10" style="background-color: #7EFD7E;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <input class="form-control input-xs" value="Ipsum">
-                            </div>
-                            <div class="col-sm-1 no-padding-right text-align-right">
-                                <span class="badge badge-square badge-empty padding-10" style="background-color: #7EFDFD;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <input class="form-control input-xs" value="Dolor">
-                            </div>                               
-                        </div>
-                        <div class="row form-group">
-                            <div class="col-sm-1 no-padding-right text-align-right">
-                                <span class="badge badge-square badge-empty padding-10" style="background-color: #FDFD7E;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <input class="form-control input-xs" value="Lorem">
-                            </div>
-                            <div class="col-sm-1 no-padding-right text-align-right">
-                                <span class="badge badge-square badge-empty padding-10" style="background-color: #FD7EFD;"></span>
-                            </div>
-                            <div class="col-sm-3">
-                                <input class="form-control input-xs" value="Ipsum">
-                            </div>
-
-                        </div>                          
-                    </div>                  
-                </div>
-                
-            </div>
+<div class="modal js-modal fade" style="display: none;" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
             
-            <div class="modal-footer">
-                <a href="#" class="btn btn-primary">Salvar</a>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>                  
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title">Configurações</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">                 
+                            <h6>Tamanho da Bolha</h6>
+                            <div class="row">
+                                <div class="col-sm-2 text-align-right">Mín <span class="label label-default carbon" id="minimal-label1">20</span></div>
+                                <div class="col-sm-4"><div id="sample-minimal" class="colored-blue slider-xs noUi-target noUi-ltr noUi-horizontal noUi-background"><div class="noUi-base"><div class="noUi-origin noUi-connect" data-style="left" style="left: 20%;"><div class="noUi-handle noUi-handle-lower"></div></div><div class="noUi-origin noUi-background" data-style="left" style="left: 72.1642%;"><div class="noUi-handle noUi-handle-upper"></div></div></div></div></div>                                
+                                <div class="col-sm-2"><span class="label label-default carbon" id="minimal-label2">72</span> Máx</div>                              
+                            </div>
+                        </div>                  
+                    </div>
+                    
+                    <div class="horizontal-space margin-top-10"></div>
+                    
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h6>Labels</h6>                     
+                            <div class="row form-group">
+                                <div class="col-sm-1 no-padding-right text-align-right">
+                                    <span class="badge badge-square badge-empty padding-10" style="background-color: #0088FF;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control input-xs" value="Lorem">
+                                </div>
+                                <div class="col-sm-1 no-padding-right text-align-right">
+                                    <span class="badge badge-square badge-empty padding-10" style="background-color: #7E7EFD;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control input-xs" value="Ipsum">
+                                </div>
+                                <div class="col-sm-1 no-padding-right text-align-right">
+                                    <span class="badge badge-square badge-empty padding-10" style="background-color: #FE1F1F;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control input-xs" value="Dolor">
+                                </div>                               
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-1 no-padding-right text-align-right">
+                                    <span class="badge badge-square badge-empty padding-10" style="background-color: #FD7E7E;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control input-xs" value="Lorem">
+                                </div>
+                                <div class="col-sm-1 no-padding-right text-align-right">
+                                    <span class="badge badge-square badge-empty padding-10" style="background-color: #7EFD7E;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control input-xs" value="Ipsum">
+                                </div>
+                                <div class="col-sm-1 no-padding-right text-align-right">
+                                    <span class="badge badge-square badge-empty padding-10" style="background-color: #7EFDFD;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control input-xs" value="Dolor">
+                                </div>                               
+                            </div>
+                            <div class="row form-group">
+                                <div class="col-sm-1 no-padding-right text-align-right">
+                                    <span class="badge badge-square badge-empty padding-10" style="background-color: #FDFD7E;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control input-xs" value="Lorem">
+                                </div>
+                                <div class="col-sm-1 no-padding-right text-align-right">
+                                    <span class="badge badge-square badge-empty padding-10" style="background-color: #FD7EFD;"></span>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input class="form-control input-xs" value="Ipsum">
+                                </div>
+
+                            </div>                          
+                        </div>                  
+                    </div>
+                    
+                </div>
+                
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary">Salvar</a>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>                  
+                </div>
             </div>
         </div>
     </div>
-</div>
+    
+
 </script>

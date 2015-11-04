@@ -9,15 +9,12 @@
         .grafico_lista {
             margin: 10px 0 25px;
         }
-        .grafico_lista .lista {
-            height: 200px; 
-            overflow: auto;
-        }
+        
         .piechart_div {
             margin: 0 0 5px;
         }
     </style>
-<div class="widget radius-bordered simulacao" style="">                                         
+<div class="widget radius-bordered simulacao js-widget" style="">                                         
     <div class="widget-header bg-seashell">
         <span class="widget-caption silver js-title"></span>
         
@@ -58,7 +55,7 @@
             <a href="#" class="js-config">
                 <i class="fa fa-cog silver"></i>
             </a>
-            <a href="#" data-toggle="maximize">
+            <a href="#" class="js-maximize" data-toggle="maximize">
                 <i class="fa fa-expand silver"></i>
             </a>
             <a href="#" data-toggle="collapse">
@@ -88,6 +85,9 @@
         </div>
 
     </div>
+</div>
+
+<div class="js-modal-el">
 </div>
 
 
