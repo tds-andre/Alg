@@ -11,7 +11,10 @@ function BubbleCluster(args){
                 
             },
 			cluster: function(datum,i){return datum[datum.length-1]},
-			duration: 500
+			duration: 500,
+            color: this.selectColor,
+            min:5,
+            max:16
 		}	
 
 	
@@ -22,12 +25,13 @@ function BubbleCluster(args){
     this.height = this.options.height;// - this.margin.top - this.margin.bottom;
     this.scale = {};
     this.axes = {};
+    this.selected = null;
     this.keys = args.dimensions; 
     this.el = this.options.el
-    this.clusters = [];
+    this.clusters = this.options.clusters || [];
     this.scale.color = function(clusterName){
-    	return selectColor(self.clusters.indexOf(clusterName), self.clusters.length)
-    }
+        return self.options.color(self.clusters.indexOf(clusterName), self.clusters.length)
+    }//this.options.color;
 
     this.chart = d3.select(this.el).append("svg")
 		.attr("width", this.width)
@@ -35,9 +39,24 @@ function BubbleCluster(args){
         
     
     
+    this.unselect = function(){
+        d3.select(this.selected.view)
+            .attr("stroke-width", 1)                
+            .attr("stroke",  "black")
+            .style('fill-opacity', 0.5)
+        this.selected = null;
+    }
 
+    this.select = function(view,data){
+        this.selected = {view: view,data: data}
+        d3.select(view)
+            .attr("stroke-width", 5)                
+            .attr("stroke",  "red")
+            .style('fill-opacity', 1)
+    }
 
     this.update = function(data){
+
     	var
     		self =this;
     	self.data = data;
@@ -45,7 +64,8 @@ function BubbleCluster(args){
 
 		self.updateScales();
 		self.updateClusters();
-        self.updateAxes();
+        
+        
 
         //update
         circle
@@ -64,7 +84,9 @@ function BubbleCluster(args){
                 .attr("transform", "translate(60,0)")
                 .attr("cx", function(el){return self.scale.x(Number(el[self.keys[0]]))})
                 .attr("cy", function(el){return self.scale.y(Number(el[self.keys[1]]))})                
-                .attr("fill", function(el){return self.scale.color(el[self.keys[3]])})
+                .attr("fill", function(el){
+                	return self.scale.color(el[self.keys[3]])
+                })
                 .attr("fill-opacity", 0.5)
                 .attr("stroke-width", 1)                
                 .attr("stroke",  "black")
@@ -78,7 +100,23 @@ function BubbleCluster(args){
                 .on("mouseout", function(el){
                     d3.select(this)
                         .style('fill-opacity', 0.5)
-                });
+                })
+                .on("click", function(d){
+                    if(self.options.click){
+                        if(self.selected){
+                            if(self.selected.data == d){
+                                self.unselect(self.selected); 
+                                d = null;                         
+                            }else{
+                                self.unselect(self.selected);
+                                self.select(this,d);
+                            }
+                        }else{
+                            self.select(this,d);
+                        }
+                        self.options.click(self,this,d);
+                    }
+                })
 
                 
         entered
@@ -94,9 +132,12 @@ function BubbleCluster(args){
        	exited
        		.transition()
        			.duration(this.options.duration)
-       			.attr("r",0);
-       	exited.
-       		remove();
+       			.attr("r",0)
+       	
+       		.remove();
+
+
+        self.updateAxes();
 
                 
 	}
@@ -107,7 +148,7 @@ function BubbleCluster(args){
 
 		self.scale.radius = d3.scale.linear()
 		    .domain([d3.min(self.data, function(el){return Number(el[self.keys[2]])}), d3.max(self.data, function(el){return Number(el[self.keys[2]])})])
-		    .range([5, 16]);
+		    .range([this.options.min, this.options.max]);
 		self.scale.x = d3.scale.linear()
 		    .domain([d3.min(self.data, function(el){return Number(el[self.keys[0]])}), d3.max(self.data, function(el){return Number(el[self.keys[0]])})])
 		    .range([50, self.width - 50 - 60]);
@@ -115,6 +156,12 @@ function BubbleCluster(args){
 		    .domain([d3.min(self.data, function(el){return Number(el[self.keys[1]])}), d3.max(self.data, function(el){return Number(el[self.keys[1]])})])
 		    .range([self.height - 50,  50]);
 	}
+
+    this.updateRadius = function(min,max){
+        this.options.min = min;
+        this.options.max = max;
+        this.update(this.data);
+    }
 
     this.updateAxes = function(){
          $(".axis", this.el).remove();
@@ -137,13 +184,17 @@ function BubbleCluster(args){
 
 
 	this.updateClusters = function(){
-		var
-			clusters = []
-		for(var i = 0; i < this.data.length; i ++){
-			if(clusters.indexOf(this.data[i][this.keys[3]])==-1)
-				clusters.push(this.data[i][this.keys[3]])
-		}
-		this.clusters = clusters;
+        if(this.options.clusters){
+            this.clusters = this.options.clusters;
+        }else{
+    		var
+    			clusters = []
+    		for(var i = 0; i < this.data.length; i ++){
+    			if(clusters.indexOf(this.data[i][this.keys[3]])==-1)
+    				clusters.push(this.data[i][this.keys[3]])
+    		}
+    		this.clusters = clusters;
+        }
 	}
 
 	this.updateDimensions = function(keys){
@@ -160,9 +211,11 @@ function BubbleCluster(args){
         this.update(this.data);
     }
 
-	function selectColor(colorNum, colors){
-    	if (colors < 1) colors = 1; // defaults to one color - avoid divide by zero
-    		return "hsl(" + (colorNum * (360 / colors) % 360) + ",100%,50%)";
-	}
+	
 
 }
+
+BubbleCluster.prototype.selectColor = function(colorNum, colors){
+        if (colors < 1) colors = 1; // defaults to one color - avoid divide by zero
+            return "hsl(" + (colorNum * (360 / colors) % 360) + ",100%,50%)";
+    }
