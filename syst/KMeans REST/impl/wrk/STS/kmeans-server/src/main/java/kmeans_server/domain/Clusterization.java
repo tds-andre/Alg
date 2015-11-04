@@ -39,11 +39,7 @@ public class Clusterization {
 	private int initial = 5;
 
 	private double quality = 0.1;
-	
-	private int min = 5;
-	
-	private int max = 16;
-	
+
 
 	@Enumerated(EnumType.STRING)
 	private ClusterizationStatus status = ClusterizationStatus.CREATED;
@@ -61,24 +57,7 @@ public class Clusterization {
 	}
 
 	
-	public int getMin() {
-		return min;
-	}
 
-
-	public void setMin(int min) {
-		this.min = min;
-	}
-
-
-	public int getMax() {
-		return max;
-	}
-
-
-	public void setMax(int max) {
-		this.max = max;
-	}
 
 
 	public List<Cluster> getClusters() {
