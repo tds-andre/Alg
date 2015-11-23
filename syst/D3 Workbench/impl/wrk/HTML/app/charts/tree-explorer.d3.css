@@ -1,0 +1,30 @@
+.te-node {
+  cursor: pointer;
+}
+
+
+.te .tooltip td{
+  text-align: left;
+  padding-right: 4px;
+}
+
+.te-node text {
+  font: 10px sans-serif;
+}
+
+.te-selected {
+	stroke-width: 3px;
+	stroke: steelblue;
+	stroke-opacity: 0.8;
+}
+
+.te-link {
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+  stroke-opacity: 0.5;
+}
+
+.link:hover{
+  
+}

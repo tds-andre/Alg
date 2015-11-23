@@ -1,0 +1,30 @@
+.hb-bar {
+  fill: steelblue;
+  cursor: pointer;
+}
+
+.hb-bar:hover {
+  fill: brown;
+}
+
+.hb-axis text {
+  font: 10px sans-serif;
+}
+
+.hb-axis text:hover{
+  font: 12px sans-serif;
+}
+
+.hb-text {
+  fill: brown;
+  font: 10px sans-serif;
+  text-anchor: start;
+}
+
+.hb-axis path,
+.hb-axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+

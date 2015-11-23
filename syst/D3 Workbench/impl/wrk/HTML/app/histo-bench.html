@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Head -->
+<head>
+    <meta charset="utf-8" />
+    <title>D3 Workbench</title>
+
+    <meta name="description" content="Dashboard" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+   
+    <link href="./vendor/bootstrap/bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="histo-bench.d3.css" rel="stylesheet" />
+</head>
+<!-- /Head -->
+<!-- Body -->
+<body>
+        
+
+
+    
+    <!--Page Related Scripts-->
+    <script src="./vendor/d3/d3.js"></script>
+    <script src="./vendor/jQuery/jquery-1.11.3.min.js"></script>
+    <script src="./vendor/bootstrap/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
+    <script src="activity-tree.js"></script>
+    <script src="histo-bench.d3.js"></script>
+    
+   
+
+<style>
+
+
+
+</style>
+
+<script>
+var chart = new HistoBench();
+var data;
+
+
+
+
+d3.tsv("data.tsv", type, function(error, data2) {
+    data = data2;
+    chart.update(data)  
+});
+
+function type(d) {
+  d.value = +d.value; // coerce to number
+  return d;
+}
+
+
+
+
+
+
+
+</script>
+
+
+
+    
+</body>
+<!--  /Body -->
+</html>
