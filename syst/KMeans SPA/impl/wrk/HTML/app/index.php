@@ -376,7 +376,7 @@ Purchase: http://wrapbootstrap.com
                     <!--Principal-->
                     <li class="active" id="transaction-report-button">
                         <a href="#" >
-                            <i class="menu-icon fa fa-magic"></i>
+                            <i class="menu-icon fa fa-bar-chart"></i>
                             <span class="menu-text"> Principal </span>
                         </a>
                     </li>

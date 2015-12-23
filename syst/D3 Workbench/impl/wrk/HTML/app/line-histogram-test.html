@@ -25,7 +25,9 @@ body {
 
 </style>
 <body>
+<script src="charts/line-histogram.d3.js"></script>
 <script src="../node_modules/d3/d3.js"></script>
+<script src="fake.js"></script>
 <script>
 
 var margin = {top: 20, right: 20, bottom: 30, left: 50},
@@ -45,6 +47,17 @@ var x = d3.scale.linear()
     .domain([0,1])
 
 var values, data;
+
+var values = fake.filter(function(el){return el.owned>0})
+
+function acessor(d){
+  return d.owned;
+}
+data = d3.layout.histogram()
+        .bins(100)
+        .value(acessor)
+        (values);
+
 function randomize(){
 
     values = d3.range(1000).map(d3.random.bates(10));
@@ -56,7 +69,7 @@ function randomize(){
     y.domain([0, d3.max(data, function(d) { return d.y; })])
 
 }
-randomize();
+//randomize();
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -92,12 +105,13 @@ var svg = d3.select("body").append("svg")
       .attr("dy", ".71em")
       .style("text-anchor", "end")
       .text("Price ($)");
-var _d1,_d0=false;
-var p = svg.append("path").attr("class", "line")
-.datum(data)  
-.attr("d", function(d){
-        return (_d1 = line(d))        
-       })
+
+  var _d1,_d0=false;
+  var p = svg.append("path").attr("class", "line")
+  .datum(data)  
+  .attr("d", function(d){
+          return (_d1 = line(d))        
+         })
 
 function transit(){
 
